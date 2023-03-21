@@ -25,7 +25,7 @@
 
   <!-- sm:border-b-2 sm:border-gray-500 -->
   <!-- fixed -->
-  <div class="header flex flex-row p-5 bg-white fixed w-screen md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
+  <div class="header flex flex-row p-5 bg-white fixed w-screen md:static md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
     <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
     <div class="logo pr-5 float-right">
       <img src="images/logo.svg" alt="" srcset="">
@@ -60,27 +60,50 @@
     </div>
   </div>
 
+<div class="content">
   <div class="product ">
-   
-    <!-- image -->
-    <div class="bg-cover h-[43vh] bg-center flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');">
+    <!-- the big image -->
+    <div class="bg-cover h-[43vh] bg-center flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');" id="image-show">
       
-       <div id="previous-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5">
+      <div id="previous-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5 md:hidden">
         <img class="" src="images/icon-previous.svg" alt="">
       </div>
-
       <div class="flex-grow"></div>
-
-      <div id="next-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5">
+      <div id="next-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5 md:hidden">
         <img class="" src="images/icon-next.svg" alt="">
       </div>
-      <!-- <img class="opacity-0 w-full h-screen" src="images/image-product-1.jpg" alt=""> -->
     </div>
+
+    <div class="gallery-item hidden md:block">
+      <input type="radio" name="gallery" id="img-1">
+      <!-- <img class="hidden" src="images/image-product-1.jpg" alt=""> -->
+      <label for="img-1">
+        <img src="images/image-product-1-thumbnail.jpg" alt="">
+      </label>
+    </div>
+
+    <div class="gallery-item hidden md:block">
+      <input type="radio" name="gallery" id="img-2">
+      <!-- <img class="hidden" src="images/image-product-2.jpg" alt=""> -->
+      <label for="img-2">
+        <img src="images/image-product-2-thumbnail.jpg" alt="">
+      </label>
+    </div>
+
+    <div class="thumbnail-image hidden">
+      
+      
+      <img src="images/image-product-3-thumbnail.jpg" alt="">
+      <img src="images/image-product-4-thumbnail.jpg" alt="">
+    </div>
+
+    <div class="big-image">
     
-    <img class="hidden" src="images/image-product-2.jpg" alt="">
+    
     <img class="hidden" src="images/image-product-3.jpg" alt="">
     <img class="hidden" src="images/image-product-4.jpg" alt="">
-
+    </div>
+    
   </div>
   
   <div class="product-info px-5 pt-5">
@@ -113,6 +136,8 @@
     <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
     <p class="pl-5 text-white" >Add to cart</p>
   </div>
+</div>
+  
   
   <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
