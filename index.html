@@ -1,27 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
+ 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | E-commerce product page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>E-commerce product page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    *{padding:0px; margin:0px; box-sizing: border-box;}
+    body{font-family: 'Hanken Grotesk', sans-serif;font-family: 'Kumbh Sans', sans-serif;}
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
+    .header ul {
+      /* display:flex;
+      flex-direction: row; */
+    }
   </style>
 </head>
 <body>
 
-  Collections
-  Men
-  Women
-  About
-  Contact
+  <!-- sm:border-b-2 sm:border-gray-500 -->
+  <div class="header flex flex-row p-5 md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
+    <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
+    <div class="logo pr-5 float-right">
+      <img src="images/logo.svg" alt="" srcset="">
+    </div>
 
+    <div class="menu flex absolute float-left md:static">
+      <ul class="translate-x-[-150%] w-0 invisible left-[-80%] flex flex-col md:visible md:flex-row md:ml-12">
+        <li class="md:pr-5 ">Collections</li>
+        <li class="md:pr-5 ">Men</li>
+        <li class="md:pr-5 ">Women</li>
+        <li class= "md:pr-5 ">About</li>
+        <li class="md:pr-5 ">Contact</li>
+      </ul>
+      <div class="hamburger align-middle md:hidden">
+        <label for="menu-btn">
+          <input type="checkbox" value="" class="h-[1rem] w-[1rem] hidden" id="menu-btn">
+          <span class="bg-black block w-6 h-[3px] rounded-full m-[0.3rem] transition-all duration-500 origin-top-left
+          "></span>
+          <span class="bg-black block w-6 h-[3px] rounded-full m-[0.3rem] transition-all duration-500"></span>
+          <span class="bg-black block w-6 h-[3px] rounded-full m-[0.3rem] transition-all duration-500 origin-top-left "></span>
+      </label>
+      </div>
+      
+    </div>
+    <div class="flex-grow"></div>
+    <div class="cart pr-5">
+      <img src="images/icon-cart.svg" alt="" srcset="">
+    </div>
+
+    <div class="profile" class="">
+      <img src="images/image-avatar.png" alt="" class="h-[24px] w-[24px]">
+    </div>
+  </div>
+
+  <div class="produ"></div>
   Sneaker Company
 
   Fall Limited Edition Sneakers
@@ -39,6 +81,18 @@
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </div> 
+  <!-- 
+
+    -🏠 Every good HTML document should have a main landmark! This landmark helps users understand the structure of the page and navigate it more easily.
+
+-📌 The main landmark should typically be the <main> element. This element should contain the main content of the page, such as articles, posts, or product listings.
+
+-🔎 You can use ARIA attributes to help identify your main landmark and make it more accessible to users who rely on assistive technologies.
+
+-🧐 Remember that other landmarks, such as <header>, <nav>, <aside>, and <footer>, can also be helpful for organizing your content and making it easier to navigate.
+
+-💻 When designing your HTML document, it's important to consider the needs of all users, including those with disabilities. By using proper landmarks and ARIA attributes, you can make your site more accessible and user-friendly for everyone.
+   -->
 </body>
 </html>
