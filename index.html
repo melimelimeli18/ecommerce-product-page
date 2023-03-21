@@ -21,9 +21,10 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
-<body class="">
+<body class="overflow-x-hidden">
 
   <!-- sm:border-b-2 sm:border-gray-500 -->
+  <!-- fixed -->
   <div class="header flex flex-row p-5 bg-white fixed w-screen md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
     <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
     <div class="logo pr-5 float-right">
@@ -50,26 +51,36 @@
       
     </div>
     <div class="flex-grow"></div>
-    <div class="cart pr-5">
+    <div id="preview-cart-btn" class="cart pr-5">
       <img src="images/icon-cart.svg" alt="" srcset="">
     </div>
-
+    
     <div class="profile" class="">
       <img src="images/image-avatar.png" alt="" class="h-[24px] w-[24px]">
     </div>
   </div>
 
-  <div class="product">
-    <!-- <div class="bg-cover">
-      <img class="w-full h-[30vh]" src="images/image-product-1.jpg" alt="">
-    </div> -->
-    <div class="bg-cover h-[44vh] bg-center" style="background-image: url('images/image-product-1.jpg');">
-      <img class="opacity-0 w-full h-screen" src="images/image-product-1.jpg" alt="">
+  <div class="product ">
+   
+    <!-- image -->
+    <div class="bg-cover h-[43vh] bg-center flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');">
+      
+       <div id="previous-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5">
+        <img class="" src="images/icon-previous.svg" alt="">
+      </div>
+
+      <div class="flex-grow"></div>
+
+      <div id="next-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5">
+        <img class="" src="images/icon-next.svg" alt="">
+      </div>
+      <!-- <img class="opacity-0 w-full h-screen" src="images/image-product-1.jpg" alt=""> -->
     </div>
     
     <img class="hidden" src="images/image-product-2.jpg" alt="">
     <img class="hidden" src="images/image-product-3.jpg" alt="">
     <img class="hidden" src="images/image-product-4.jpg" alt="">
+
   </div>
   
   <div class="product-info px-5 pt-5">
@@ -81,7 +92,7 @@
     <div class="price pt-5 flex flex-row items-center">
       <p class="text-[2.5rem] font-bold">$125.00</p>
       <div class="ml-5 px-4 py-2 rounded-lg bg-orange-300 ">
-        <p class="align-middle font-bold text-orange-600">50%</p>
+        <p class="align-middle font-bold text-orange-600 ">50%</p>
       </div>
       <div class="flex-grow"></div>
       <p>$250.00</p>
@@ -89,25 +100,25 @@
   </div>
 
   <div class="adding-items mx-5 mt-5 flex justify-between items-center">
-    <div class="minus bg-white px-2 py-5">
+    <div id="minus-btn" class="minus bg-white px-2 py-5">
       <img src="images/icon-minus.svg" class="w-[1rem]" alt="">
     </div>
     <p class="font-bold text-[1.5rem]">0</p>
-    <div class="plus bg-white px-2 py-5">
+    <div id="plus-btn" class="plus bg-white px-2 py-5">
       <img src="images/icon-plus.svg" class="w-[1rem]" alt="">
     </div>
   </div>
 
-  <div class="add-cart mt-5 mx-5  flex flex-row justify-center bg-orange-500 py-5 rounded-lg">
+  <div id="add-cart-btn" class="mt-5 mx-5  flex flex-row justify-center bg-orange-500 py-5 rounded-lg shadow-xl shadow-orange-200 mb-5">
     <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
     <p class="pl-5 text-white" >Add to cart</p>
-
   </div>
   
-  <div class="attribution">
+  <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div> 
+  </div>  -->
+
   <!-- 
 
     -🏠 Every good HTML document should have a main landmark! This landmark helps users understand the structure of the page and navigate it more easily.
