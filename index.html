@@ -25,7 +25,7 @@
 
   <!-- sm:border-b-2 sm:border-gray-500 -->
   <!-- fixed -->
-  <div class="header flex flex-row p-5 bg-white fixed w-screen md:static md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
+  <div class="header flex flex-row p-5 bg-white w-screen md:static md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
     <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
     <div class="logo pr-5 float-right">
       <img src="images/logo.svg" alt="" srcset="">
@@ -63,7 +63,7 @@
 <div class="content">
   <div class="product ">
     <!-- the big image -->
-    <div class="bg-cover h-[43vh] bg-center flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');" id="image-show">
+    <div class="bg-cover h-[43vh] bg-bottom flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');" id="image-show">
       
       <div id="previous-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5 md:hidden">
         <img class="" src="images/icon-previous.svg" alt="">
@@ -76,7 +76,6 @@
 
     <div class="gallery-item hidden md:block">
       <input type="radio" name="gallery" id="img-1">
-      <!-- <img class="hidden" src="images/image-product-1.jpg" alt=""> -->
       <label for="img-1">
         <img src="images/image-product-1-thumbnail.jpg" alt="">
       </label>
@@ -84,11 +83,27 @@
 
     <div class="gallery-item hidden md:block">
       <input type="radio" name="gallery" id="img-2">
-      <!-- <img class="hidden" src="images/image-product-2.jpg" alt=""> -->
       <label for="img-2">
         <img src="images/image-product-2-thumbnail.jpg" alt="">
       </label>
     </div>
+
+    <div class="gallery-item hidden md:block">
+      <input type="radio" name="gallery" id="img-3">
+      <label for="img-3">
+        <img src="images/image-product-3-thumbnail.jpg" alt="">
+      </label>
+    </div>
+
+    <div class="gallery-item hidden md:block">
+      <input type="radio" name="gallery" id="img-4">
+      <label for="img-4">
+        <img src="images/image-product-4-thumbnail.jpg" alt="">
+      </label>
+    </div>
+
+
+
 
     <div class="thumbnail-image hidden">
       

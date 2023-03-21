@@ -33,12 +33,47 @@ const fallLimitedSneaker =
     }
 ];
 
+
 fallLimitedSneaker.forEach(item => {
+    // for web
     const imageShow = document.getElementById("image-show");
     const radioBtnElement = document.getElementById(`${item.type}`);
     radioBtnElement.addEventListener("click",function(){
         imageShow.style.backgroundImage = `url('${item.src}')`;
     })
+
+    //for mobile
+    const nextBtn = document.getElementById("next-btn");
+    const previousBtn = document.getElementById("previous-btn");
+
+    let currentIndex = 0;
+    
+    function showImage(index) {
+        const { src } = fallLimitedSneaker[index];
+        imageShow.style.backgroundImage = `url(${src})`;
+      }
+    
+    nextBtn.addEventListener("click",function nextImage() {
+        if (currentIndex === fallLimitedSneaker.length - 1) {
+        currentIndex = 0;
+        } else {
+        currentIndex++;
+        }
+        showImage(currentIndex);
+        }  
+    )
+    
+    previousBtn.addEventListener("click", function previousImage() {
+        if (currentIndex === 0) {
+          currentIndex = fallLimitedSneaker.length - 1;
+        } else {
+          currentIndex--;
+        }
+        showImage(currentIndex);
+      }
+    )
+    
+
 })
 
 // IF THE RADIO BTN/type BE CLICKED OR ON CHECKED STATE, IT WIL CHANGE THE IMAGE SHOW SOURCE TO THAT.
