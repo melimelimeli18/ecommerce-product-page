@@ -19,16 +19,12 @@
     body{font-family: 'Hanken Grotesk', sans-serif;font-family: 'Kumbh Sans', sans-serif;}
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
-    .header ul {
-      /* display:flex;
-      flex-direction: row; */
-    }
   </style>
 </head>
-<body>
+<body class="">
 
   <!-- sm:border-b-2 sm:border-gray-500 -->
-  <div class="header flex flex-row p-5 md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
+  <div class="header flex flex-row p-5 bg-white fixed w-screen md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
     <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
     <div class="logo pr-5 float-right">
       <img src="images/logo.svg" alt="" srcset="">
@@ -36,11 +32,11 @@
 
     <div class="menu flex absolute float-left md:static">
       <ul class="translate-x-[-150%] w-0 invisible left-[-80%] flex flex-col md:visible md:flex-row md:ml-12">
-        <li class="md:pr-5 ">Collections</li>
-        <li class="md:pr-5 ">Men</li>
-        <li class="md:pr-5 ">Women</li>
-        <li class= "md:pr-5 ">About</li>
-        <li class="md:pr-5 ">Contact</li>
+        <a href="#"><li class="md:pr-5 ">Collections</li></a>
+        <a href="#"><li class="md:pr-5 ">Men</li></a>
+        <a href="#"><li class="md:pr-5 ">Women</li></a>
+        <a href="#"><li class= "md:pr-5 ">About</li></a>
+        <a href="#"><li class="md:pr-5 ">Contact</li></a>
       </ul>
       <div class="hamburger align-middle md:hidden">
         <label for="menu-btn">
@@ -63,20 +59,50 @@
     </div>
   </div>
 
-  <div class="produ"></div>
-  Sneaker Company
+  <div class="product">
+    <!-- <div class="bg-cover">
+      <img class="w-full h-[30vh]" src="images/image-product-1.jpg" alt="">
+    </div> -->
+    <div class="bg-cover h-[44vh] bg-center" style="background-image: url('images/image-product-1.jpg');">
+      <img class="opacity-0 w-full h-screen" src="images/image-product-1.jpg" alt="">
+    </div>
+    
+    <img class="hidden" src="images/image-product-2.jpg" alt="">
+    <img class="hidden" src="images/image-product-3.jpg" alt="">
+    <img class="hidden" src="images/image-product-4.jpg" alt="">
+  </div>
+  
+  <div class="product-info px-5 pt-5">
+    <p class="uppercase text-orange-500 font-bold tracking-widest">Sneaker Company</p>
+    <h1 class=" pt-5 font-bold text-[2.5rem] leading-none">Fall Limited Edition Sneakers</h1>
+    <p class="pt-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-  Fall Limited Edition Sneakers
+    <div class="price pt-5 flex flex-row items-center">
+      <p class="text-[2.5rem] font-bold">$125.00</p>
+      <div class="ml-5 px-4 py-2 rounded-lg bg-orange-300 ">
+        <p class="align-middle font-bold text-orange-600">50%</p>
+      </div>
+      <div class="flex-grow"></div>
+      <p>$250.00</p>
+    </div>
+  </div>
 
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
+  <div class="adding-items mx-5 mt-5 flex justify-between items-center">
+    <div class="minus bg-white px-2 py-5">
+      <img src="images/icon-minus.svg" class="w-[1rem]" alt="">
+    </div>
+    <p class="font-bold text-[1.5rem]">0</p>
+    <div class="plus bg-white px-2 py-5">
+      <img src="images/icon-plus.svg" class="w-[1rem]" alt="">
+    </div>
+  </div>
 
-  $125.00
-  50%
-  $250.00
+  <div class="add-cart mt-5 mx-5  flex flex-row justify-center bg-orange-500 py-5 rounded-lg">
+    <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
+    <p class="pl-5 text-white" >Add to cart</p>
 
-  0
-  Add to cart
+  </div>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
