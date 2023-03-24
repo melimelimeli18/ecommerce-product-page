@@ -3,11 +3,18 @@
 
 /* #menu-btn | to show navbar
  #preview-cart-btn | the cart icon/button on the navbar, to preview the item and price that we add to the card. When we clicked, there's a basket filled appear
-#previous-btn | on mobile screen - we use that to slide an image, 
-#next-btn | on mobile screen - we use that to slide an image,
-#minus-btn | to set how many item we want to add to cart 
-#plus-btn | to set how many item we want to add to cart 
-#add-cart-btn | to add the item that we already set to the cart, and will be displayed, if we clicked on #preview-cart-btn*/
+
+ #previous-btn | on mobile screen - we use that to slide an image, (DONE)
+
+ #next-btn | on mobile screen - we use that to slide an image,(DONE)
+
+ #minus-btn | to set how many item we want to add to cart (DONE)
+ 
+ #plus-btn | to set how many item we want to add to cart (DONE)
+
+ #add-cart-btn | to add the item that we already set to the cart, and will be displayed, if we clicked on (DONE)
+ 
+ #preview-cart-btn*/
 
 document.addEventListener("DOMContentLoaded", function (event) {
 const fallLimitedSneaker = 
@@ -72,9 +79,50 @@ fallLimitedSneaker.forEach(item => {
         showImage(currentIndex);
       }
     )
-    
-
 })
+
+
+const totalItem = document.querySelector(".total-item ");
+totalItem.textContent = 0;
+let count = 0;
+const plusBtn = document.getElementById("plus-btn")
+plusBtn.addEventListener("click",()=>{
+  count++;
+  totalItem.textContent = count;
+})
+
+const minusBtn = document.getElementById("minus-btn");
+minusBtn.addEventListener("click", ()=>{
+  if(totalItem.textContent < 1){
+    return false
+  } else{
+      count--;
+  totalItem.textContent = count;
+  }
+})
+
+const addCartBtn = document.getElementById("add-cart-btn");
+addCartBtn.addEventListener("click", ()=>{
+  if(count.textContent === 0){
+    return false
+  }else{
+    NumberItemCart.textContent = count;
+  }
+})
+
+const productPrice = document.getElementById("product-price");
+const NumberItemCart = document.querySelector(".item-cart");
+
+
+const titleProduct = "Fall Limited Edition Sneakers";
+const titleProductElement = document.getElementById("product-title");
+titleProductElement.textContent = titleProduct;
+
+
+
+// kalo add cart button di pencet maka item di cart span bakal keganti sesuai dengan jumlah yang ditambahkan
+
+// dan kalo preview cart dipencet, maka akan ngejumlahin angkanya
 
 // IF THE RADIO BTN/type BE CLICKED OR ON CHECKED STATE, IT WIL CHANGE THE IMAGE SHOW SOURCE TO THAT.
 
