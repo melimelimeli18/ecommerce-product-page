@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--  lanjut bikin JS button, karena functionya banyak banget
+-->
  
 <head>
   <meta charset="UTF-8">
@@ -19,25 +20,41 @@
     body{font-family: 'Hanken Grotesk', sans-serif;font-family: 'Kumbh Sans', sans-serif;}
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
+
+    #add-cart-btn{background:hsl(26, 100%, 55%);}
+    .sneaker-company,.discount p{color:hsl(26, 100%, 55%);}
+    .discount{background-color: hsl(25, 100%, 94%);}
+    .body {
+       color:hsl(220, 14%, 75%); /*grayish blue */
+      color:hsl(219, 9%, 45%); /*dark grayish blue*/
+      color:hsl(220, 13%, 13%); /*very dark blue*/
+      color:hsl(223, 64%, 98%); /*light grayish blue*/
+    }
+    .gallery-item img:hover{opacity:60%;border:2px solid rgba(255, 125, 26, 1);}
+    .normal-price {color:hsl(220, 14%, 75%)}
+    .header a, .description{color:hsl(219, 9%, 45%);}
+    #preview-cart-btn path:hover{fill:hsl(220, 13%, 13%);}
+    .profile a img:hover{outline:2px solid hsl(26, 100%, 55%);   box-sizing: border-box; border-radius: 100%;
+}
   </style>
 </head>
 <body class="overflow-x-hidden">
 
   <!-- sm:border-b-2 sm:border-gray-500 -->
   <!-- fixed -->
-  <div class="header flex flex-row p-5 bg-white w-screen md:static md:mx-5 md:pt-5 md:w-[content] md:border-b-2 md:border-gray-500">
+  <div class="header flex flex-row p-5 bg-white w-screen md:static md md:px-14 md:py-10 md:w-[content]">
     <div class="pr-[3.5rem] md:pr-0 md:appearance-none"></div>
-    <div class="logo pr-5 float-right">
+    <div class="logo pr-5 py-2 float-right cursor-pointer">
       <img src="images/logo.svg" alt="" srcset="">
     </div>
 
-    <div class="menu flex absolute float-left md:static">
+    <div class="menu flex absolute float-left py-1 md:static">
       <ul class="translate-x-[-150%] w-0 invisible left-[-80%] flex flex-col md:visible md:flex-row md:ml-12">
-        <a href="#"><li class="md:pr-5 ">Collections</li></a>
-        <a href="#"><li class="md:pr-5 ">Men</li></a>
-        <a href="#"><li class="md:pr-5 ">Women</li></a>
-        <a href="#"><li class= "md:pr-5 ">About</li></a>
-        <a href="#"><li class="md:pr-5 ">Contact</li></a>
+        <a href="#"><li class="cursor-pointer md:pr-5 ">Collections</li></a>
+        <a href="#"><li class="cursor-pointer md:pr-5 ">Men</li></a>
+        <a href="#"><li class="cursor-pointer md:pr-5 ">Women</li></a>
+        <a href="#"><li class="cursor-pointer md:pr-5 ">About</li></a>
+        <a href="#"><li class="cursor-pointer md:pr-5 ">Contact</li></a>
       </ul>
       <div class="hamburger align-middle md:hidden">
         <label for="menu-btn">
@@ -46,112 +63,104 @@
           "></span>
           <span class="bg-black block w-6 h-[3px] rounded-full m-[0.3rem] transition-all duration-500"></span>
           <span class="bg-black block w-6 h-[3px] rounded-full m-[0.3rem] transition-all duration-500 origin-top-left "></span>
-      </label>
+        </label>
       </div>
-      
     </div>
     <div class="flex-grow"></div>
-    <div id="preview-cart-btn" class="cart pr-5">
-      <img src="images/icon-cart.svg" alt="" srcset="">
+    <div id="preview-cart-btn" class="cart mr-5 py-2">
+      <!-- <a href="#"><img src="images/icon-cart.svg" alt="" srcset=""></a> -->
+
+      <a href=""><svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="hsl(219, 9%, 45%)" fill-rule="nonzero"/></svg></a>
+
+      <span class="item-cart absolute bg-orange-500 flex ml-3 top-5 items-start text-[0.6rem] px-2 rounded-full z-10 text-white md:top-10"></span>
     </div>
     
-    <div class="profile" class="">
-      <img src="images/image-avatar.png" alt="" class="h-[24px] w-[24px]">
+    <div class="profile">
+      <a href="#"><img src="images/image-avatar.png" alt="" class="h-[30px] w-[30px]"></a>
     </div>
+    
   </div>
 
-<div class="content">
-  <div class="product ">
+<hr class="hidden md:block md:mx-14 md:border-b-1 sm:border-gray-300"> 
+
+<div class="content flex flex-col md:flex-row md:px-[7rem] md:py-12 md:grow">
+  <div class="product md:flex-col md:w-[30%] md:">
     <!-- the big image -->
-    <div class="bg-cover h-[43vh] bg-bottom flex flex-row justify-center items-center" style="background-image: url('images/image-product-1.jpg');" id="image-show">
+    <div class="bg-cover h-[43vh] bg-top flex flex-row justify-center items-center md:rounded-lg md:min-h-[80%]" style="background-image: url('images/image-product-1.jpg');" id="image-show">
       
-      <div id="previous-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5 md:hidden">
+      <div id="previous-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
         <img class="" src="images/icon-previous.svg" alt="">
       </div>
       <div class="flex-grow"></div>
-      <div id="next-btn" class="flex bg-white items-center bg-red-200 px-4 py-3 rounded-full mx-5 md:hidden">
+      <div id="next-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
         <img class="" src="images/icon-next.svg" alt="">
       </div>
     </div>
 
-    <div class="gallery-item hidden md:block">
-      <input type="radio" name="gallery" id="img-1">
-      <label for="img-1">
-        <img src="images/image-product-1-thumbnail.jpg" alt="">
-      </label>
+    <div class="thumbnail flex flex-row justify-between">
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-1">
+        <label for="img-1">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-1-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-2">
+        <label for="img-2">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-2-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-3">
+        <label for="img-3">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-3-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-4">
+        <label for="img-4">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-4-thumbnail.jpg" alt="">
+        </label>
+      </div>
     </div>
-
-    <div class="gallery-item hidden md:block">
-      <input type="radio" name="gallery" id="img-2">
-      <label for="img-2">
-        <img src="images/image-product-2-thumbnail.jpg" alt="">
-      </label>
-    </div>
-
-    <div class="gallery-item hidden md:block">
-      <input type="radio" name="gallery" id="img-3">
-      <label for="img-3">
-        <img src="images/image-product-3-thumbnail.jpg" alt="">
-      </label>
-    </div>
-
-    <div class="gallery-item hidden md:block">
-      <input type="radio" name="gallery" id="img-4">
-      <label for="img-4">
-        <img src="images/image-product-4-thumbnail.jpg" alt="">
-      </label>
-    </div>
-
-
-
-
-    <div class="thumbnail-image hidden">
-      
-      
-      <img src="images/image-product-3-thumbnail.jpg" alt="">
-      <img src="images/image-product-4-thumbnail.jpg" alt="">
-    </div>
-
-    <div class="big-image">
-    
-    
-    <img class="hidden" src="images/image-product-3.jpg" alt="">
-    <img class="hidden" src="images/image-product-4.jpg" alt="">
-    </div>
-    
   </div>
-  
-  <div class="product-info px-5 pt-5">
-    <p class="uppercase text-orange-500 font-bold tracking-widest">Sneaker Company</p>
-    <h1 class=" pt-5 font-bold text-[2.5rem] leading-none">Fall Limited Edition Sneakers</h1>
-    <p class="pt-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
-      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+  <div class="grow-0 px-8"></div>
+
+  <div class="product-info px-5 pt-5 md:w-[50%] md:pl-16 md:grow md:mr-5">
+    <p class="sneaker-company uppercase font-bold tracking-widest">Sneaker Company</p>
+    <h1 id="product-title"class=" pt-5 font-bold text-[2.5rem] leading-none"></h1>
+    <p class="description pt-5">These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
     <div class="price pt-5 flex flex-row items-center">
-      <p class="text-[2.5rem] font-bold">$125.00</p>
-      <div class="ml-5 px-4 py-2 rounded-lg bg-orange-300 ">
-        <p class="align-middle font-bold text-orange-600 ">50%</p>
+      <p id="product-price" class="text-[2rem] font-bold">$125.00</p>
+      <div class="discount ml-5 px-4 py-2 rounded-lg">
+        <p class=" align-middle font-bold">50%</p>
       </div>
       <div class="flex-grow"></div>
-      <p>$250.00</p>
+      <p class="normal-price line-through block md:hidden">$250.00</p>
     </div>
-  </div>
-
-  <div class="adding-items mx-5 mt-5 flex justify-between items-center">
-    <div id="minus-btn" class="minus bg-white px-2 py-5">
-      <img src="images/icon-minus.svg" class="w-[1rem]" alt="">
+    <p class="normal-price line-through hidden md:block">$250.00</p>
+    
+    <div class="flex flex-col  md:flex-row md:items-center">
+      <div class="adding-items mt-5 flex justify-between items-center md:grow ">
+        <div id="minus-btn" class="minus bg-white px-2 py-5 cursor-pointer">
+          <img src="images/icon-minus.svg" class="w-[1rem]" alt="">
+        </div>
+        <p class="total-item font-bold text-[1.5rem]"></p>
+        <div id="plus-btn" class="plus bg-white px-2 py-5 cursor-pointer">
+          <img src="images/icon-plus.svg" class="w-[1rem]" alt="">
+        </div>
+      </div>
+      <div class="md:grow-0 md:px-5"></div>
+      <div id="add-cart-btn" class="mt-5 flex flex-row justify-center py-5 rounded-lg shadow-xl shadow-orange-200 mb-5 cursor-pointer md:grow">
+        <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
+        <p class="pl-5 text-white" >Add to cart</p>
+      </div>
     </div>
-    <p class="font-bold text-[1.5rem]">0</p>
-    <div id="plus-btn" class="plus bg-white px-2 py-5">
-      <img src="images/icon-plus.svg" class="w-[1rem]" alt="">
-    </div>
-  </div>
-
-  <div id="add-cart-btn" class="mt-5 mx-5  flex flex-row justify-center bg-orange-500 py-5 rounded-lg shadow-xl shadow-orange-200 mb-5">
-    <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
-    <p class="pl-5 text-white" >Add to cart</p>
-  </div>
+   </div>
+    
 </div>
+
   
   
   <!-- <div class="attribution">
