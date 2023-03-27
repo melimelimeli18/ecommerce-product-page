@@ -98,25 +98,63 @@ fallLimitedSneaker.forEach(item => {
   })
 
   // preview the total item that i adding to cart
-const addCartBtn = document.getElementById("add-cart-btn");
-const NumberItemCart = document.querySelector(".item-cart");
+  const addCartBtn = document.getElementById("add-cart-btn");
+  const NumberItemCart = document.querySelector(".item-cart");
 
-addCartBtn.addEventListener("click", ()=>{
-  if(count.textContent === 0){
-    return false
-  }else{
-    NumberItemCart.textContent = count;
+  addCartBtn.addEventListener("click", ()=>{
+    if(count.textContent === 0){
+      return false
+    }else{
+      NumberItemCart.textContent = count;
+    }
+  })
+
+  // the price before get discount and adding the currency
+  const normalPriceCurrency = 250;
+  const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
+  const normalPriceElement = document.querySelector(".normal-price");
+  normalPriceElement.textContent = normalPrice;
+
+  // the discount (the product will be depends of this)
+  // const discountSymbol = "$";
+  // const discountProduct = 50;
+
+const discountElement = document.querySelector(".discount p");
+const discount = document.createElement("div");
+  const discountSymbol = document.createElement("span");
+    discountSymbol.textContent = "%";
+  const discountProduct = document.createElement("span");
+  const discountPrice = 50;
+    discountProduct.textContent = discountPrice;
+  
+  discount.appendChild(discountProduct);
+  discount.appendChild(discountSymbol);
+  discountElement.appendChild(discount);
+  
+  console.log(count);
+  // const discount
+
+  // function discount
+  function afterDiscount(normalPriceCurrency,discountPrice){
+    const discountAmount = (discountPrice / 100) * normalPriceCurrency;
+    const discountedPrice = normalPriceCurrency - discountAmount;
+    return discountedPrice;
   }
-})
+  
+  // after discount
+  const productPriceElement = document.getElementById("product-price");
+  const productPrice = afterDiscount(normalPriceCurrency,discountPrice);
+  
+  //adding the productPrice currency
 
-const normalPriceElement = document.querySelector(".normal-price");
-let normalPrice = "$250.00";
-normalPriceElement.textContent = normalPrice;
+  productPriceElement.append(productPrice);
 
-const titleProductElement = document.getElementById("product-title");
-let titleProduct = "Fall Limited Edition Sneakers";
-// titleProductElement.appendChild(titleProduct);
-titleProductElement.textContent = titleProduct;
+  console.log(productPrice);
+
+  const titleProductElement = document.getElementById("product-title");
+  const titleProduct = "Fall Limited Edition Sneakers";
+  // titleProductElement.appendChild(titleProduct);
+  titleProductElement.textContent = titleProduct;
 
 
 // kalo add cart button di pencet maka item di cart span bakal keganti sesuai dengan jumlah yang ditambahkan
