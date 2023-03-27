@@ -110,14 +110,15 @@ fallLimitedSneaker.forEach(item => {
   })
 
   // the price before get discount and adding the currency
-  const normalPriceCurrency = 250;
-  const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
+  // const normalPriceCurrency = 250;
+  // const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
+  // const normalPriceElement = document.querySelector(".normal-price");
+  // normalPriceElement.textContent = normalPrice;
+  
+  const normalPrice = 250;
+  const normalPriceCurrency = normalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
   const normalPriceElement = document.querySelector(".normal-price");
-  normalPriceElement.textContent = normalPrice;
-
-  // the discount (the product will be depends of this)
-  // const discountSymbol = "$";
-  // const discountProduct = 50;
+  normalPriceElement.textContent = normalPriceCurrency;
 
 const discountElement = document.querySelector(".discount p");
 const discount = document.createElement("div");
@@ -135,25 +136,23 @@ const discount = document.createElement("div");
   // const discount
 
   // function discount
-  function afterDiscount(normalPriceCurrency,discountPrice){
-    const discountAmount = (discountPrice / 100) * normalPriceCurrency;
-    const discountedPrice = normalPriceCurrency - discountAmount;
+  function afterDiscount(normalPrice,discountPrice){
+    const discountAmount = (discountPrice / 100) * normalPrice;
+    const discountedPrice = normalPrice - discountAmount;
     return discountedPrice;
   }
   
   // after discount
   const productPriceElement = document.getElementById("product-price");
-  const productPrice = afterDiscount(normalPriceCurrency,discountPrice);
-  
+  const productPrice = afterDiscount(normalPrice,discountPrice);//150
+  const productPriceCurrency = productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
   //adding the productPrice currency
 
-  productPriceElement.append(productPrice);
-
-  console.log(productPrice);
+  productPriceElement.append(productPriceCurrency);
 
   const titleProductElement = document.getElementById("product-title");
   const titleProduct = "Fall Limited Edition Sneakers";
-  // titleProductElement.appendChild(titleProduct);
   titleProductElement.textContent = titleProduct;
 
 
