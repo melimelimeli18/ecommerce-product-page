@@ -109,7 +109,7 @@ addCartBtn.addEventListener("click", ()=>{
   }
 })
 
-// const normalPriceElement = document.querySelectorAll(".normal-price");
+const normalPriceElement = document.querySelector(".normal-price");
 let normalPrice = "$250.00";
 normalPriceElement.textContent = normalPrice;
 
