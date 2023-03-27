@@ -40,7 +40,6 @@ const fallLimitedSneaker =
     }
 ];
 
-
 fallLimitedSneaker.forEach(item => {
     // for web
     const imageShow = document.getElementById("image-show");
@@ -48,28 +47,24 @@ fallLimitedSneaker.forEach(item => {
     radioBtnElement.addEventListener("click",function(){
         imageShow.style.backgroundImage = `url('${item.src}')`;
     })
-
     //for mobile
-    const nextBtn = document.getElementById("next-btn");
-    const previousBtn = document.getElementById("previous-btn");
-
     let currentIndex = 0;
     
     function showImage(index) {
-        const { src } = fallLimitedSneaker[index];
-        imageShow.style.backgroundImage = `url(${src})`;
-      }
-    
+      const { src } = fallLimitedSneaker[index];
+      imageShow.style.backgroundImage = `url(${src})`;
+    }
+    const nextBtn = document.getElementById("next-btn");
     nextBtn.addEventListener("click",function nextImage() {
         if (currentIndex === fallLimitedSneaker.length - 1) {
-        currentIndex = 0;
+          currentIndex = 0;
         } else {
-        currentIndex++;
+          currentIndex++;
         }
         showImage(currentIndex);
-        }  
-    )
-    
+      }  
+      )
+    const previousBtn = document.getElementById("previous-btn");
     previousBtn.addEventListener("click", function previousImage() {
         if (currentIndex === 0) {
           currentIndex = fallLimitedSneaker.length - 1;
@@ -81,27 +76,31 @@ fallLimitedSneaker.forEach(item => {
     )
 })
 
-
-const totalItem = document.querySelector(".total-item ");
-totalItem.textContent = 0;
-let count = 0;
-const plusBtn = document.getElementById("plus-btn")
-plusBtn.addEventListener("click",()=>{
-  count++;
+  // to edit how much item i want to add the cart
+  const totalItem = document.querySelector(".total-item");
+  let count = 0;
   totalItem.textContent = count;
-})
 
-const minusBtn = document.getElementById("minus-btn");
-minusBtn.addEventListener("click", ()=>{
-  if(totalItem.textContent < 1){
-    return false
-  } else{
-      count--;
-  totalItem.textContent = count;
-  }
-})
+  const plusBtn = document.getElementById("plus-btn")
+  plusBtn.addEventListener("click",()=>{
+    count++;
+    totalItem.textContent = count;
+  })
 
+  const minusBtn = document.getElementById("minus-btn");
+  minusBtn.addEventListener("click", ()=>{
+    if(totalItem.textContent < 1){
+      return false
+    } else{
+        count--;
+    totalItem.textContent = count;
+    }
+  })
+
+  // preview the total item that i adding to cart
 const addCartBtn = document.getElementById("add-cart-btn");
+const NumberItemCart = document.querySelector(".item-cart");
+
 addCartBtn.addEventListener("click", ()=>{
   if(count.textContent === 0){
     return false
@@ -110,14 +109,14 @@ addCartBtn.addEventListener("click", ()=>{
   }
 })
 
-const productPrice = document.getElementById("product-price");
-const NumberItemCart = document.querySelector(".item-cart");
+// const normalPriceElement = document.querySelectorAll(".normal-price");
+let normalPrice = "$250.00";
+normalPriceElement.textContent = normalPrice;
 
-
-const titleProduct = "Fall Limited Edition Sneakers";
 const titleProductElement = document.getElementById("product-title");
+let titleProduct = "Fall Limited Edition Sneakers";
+// titleProductElement.appendChild(titleProduct);
 titleProductElement.textContent = titleProduct;
-
 
 
 // kalo add cart button di pencet maka item di cart span bakal keganti sesuai dengan jumlah yang ditambahkan

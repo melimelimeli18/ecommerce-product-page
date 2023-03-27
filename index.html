@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--  lanjut bikin JS button, karena functionya banyak banget
+<!--  working on adding cart function
+  membetulkan elemen harga asli agar responsive
 -->
  
 <head>
@@ -8,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <script src="script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,8 @@
   <title>E-commerce product page</title>
 
   <style>
-    *{padding:0px; margin:0px; box-sizing: border-box;}
+    *{padding:0px; margin:0px; box-sizing: border-box;user-select: none;}
+    h1{user-select: text;}
     body{font-family: 'Hanken Grotesk', sans-serif;font-family: 'Kumbh Sans', sans-serif;}
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
@@ -131,15 +133,18 @@
     <h1 id="product-title"class=" pt-5 font-bold text-[2.5rem] leading-none"></h1>
     <p class="description pt-5">These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-    <div class="price pt-5 flex flex-row items-center">
-      <p id="product-price" class="text-[2rem] font-bold">$125.00</p>
-      <div class="discount ml-5 px-4 py-2 rounded-lg">
-        <p class=" align-middle font-bold">50%</p>
+    <div class="price pt-5 flex items-center flex-row md:w-1/2 md:flex-wrap">
+      <div class="flex flex-row">
+        <p id="product-price" class="text-[2rem] font-bold flex flex-row">$125.00</p>
+        <div class="discount ml-5 px-4 py-2 rounded-lg">
+          <p class=" align-middle font-bold">50%</p>
+        </div>
       </div>
-      <div class="flex-grow"></div>
-      <p class="normal-price line-through block md:hidden">$250.00</p>
+      <div class="flex-grow md:hidden"></div>
+      <div>
+        <p class="normal-price line-through">$250.00</p>
+      </div>
     </div>
-    <p class="normal-price line-through hidden md:block">$250.00</p>
     
     <div class="flex flex-col  md:flex-row md:items-center">
       <div class="adding-items mt-5 flex justify-between items-center md:grow ">
