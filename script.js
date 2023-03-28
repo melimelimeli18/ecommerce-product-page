@@ -97,16 +97,7 @@ fallLimitedSneaker.forEach(item => {
     }
   })
 
-  // preview the total item that i adding to cart
-  const addCartBtn = document.getElementById("add-cart-btn");
-  const NumberItemCart = document.querySelector(".item-cart");
 
-  addCartBtn.addEventListener("click", ()=>{
-    if(count.textContent === 0){
-      return false
-    }else{
-      NumberItemCart.textContent = count;
-    }
   })
 
   // the price before get discount and adding the currency
@@ -131,9 +122,6 @@ const discount = document.createElement("div");
   discount.appendChild(discountProduct);
   discount.appendChild(discountSymbol);
   discountElement.appendChild(discount);
-  
-  console.log(count);
-  // const discount
 
   // function discount
   function afterDiscount(normalPrice,discountPrice){
@@ -146,10 +134,9 @@ const discount = document.createElement("div");
   const productPriceElement = document.getElementById("product-price");
   const productPrice = afterDiscount(normalPrice,discountPrice);//150
   const productPriceCurrency = productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
-  //adding the productPrice currency
-
   productPriceElement.append(productPriceCurrency);
+
+
 
   const titleProductElement = document.getElementById("product-title");
   const titleProduct = "Fall Limited Edition Sneakers";
@@ -158,16 +145,87 @@ const discount = document.createElement("div");
 
 // kalo add cart button di pencet maka item di cart span bakal keganti sesuai dengan jumlah yang ditambahkan
 
-// dan kalo preview cart dipencet, maka akan ngejumlahin angkanya
+// dan kalo preview cart dipencet, maka akan ngejumlahin angkanya, apakah harus nya udh ada dari awal??? trus pas dipencet itu ngedisplay doang??? SOalnya kan JS, kalo machinenya beneran gerak berarti butuh Backend dong??
 
-// IF THE RADIO BTN/type BE CLICKED OR ON CHECKED STATE, IT WIL CHANGE THE IMAGE SHOW SOURCE TO THAT.
+/* Komponen Element di DisplayCart
+- Ada Tulisan Bold (Cart),
+- Ada garis horizontal (hr) yang lebar nya 100% dari container
+- Ada image produk yang udah ditambahin.
+- Nama produknya
+- harga per pcs, di kali total Item, Harga setelah ditotal Item (bold), ama icon sampah (buat remove item yang ditambahin)
+- Tombol checkout
 
-// As background image / the big image that will be displayed
+Tombol display cart punya shadow yang ada di kiri, kanan, bawahnya.
+
+kira-kira html dari cartnya itu sendii
+div id=cart-container class=cart p-5
+  h2 class=font-bold cart
+  hr class= p-0
+  div class=flex flex-row
+    img src jpg
+    div class=flex flex-col
+      p Fall Limited Edition
+      div class flex-row
+        p 125
+        p x
+        p 3
+        p class=font-bold 375
+    img src icon
+  div checkout button
+*/
+
+//liat ref ini di JS todolist
+// const editButton = document.createElement('button');
+// editButton.classList.add('editButton');
+// const editIcon = document.createElement('img');
+// editIcon.src = '../icon-svg/icon_edit.svg';
 
 
+// bold
 
+const removeIcon = document.createElement('img');
+removeIcon.src = 'images/icon-delete.svg';
+const removeBtn = document.createElement("button");
+removeBtn.append(removeIcon);
 
+const shoesImage = document.createElement('img');
+const shoes = 'images/image-product-1.jpg';
+shoesImage.append(shoes);
 
+const previewCartBtn = document.getElementById('preview-cart-btn');
+
+// ini tuh buat display doang. MAKE THE CART APPEAR (display BLOCK) OR ANYTHING WHEN CLICKED ON DISPLAYCART BUTTON.
+function previewCart(){
+  const cartContainer = getElementById("cart-container");
+  console.log(cartContainer);
+  // H2 CART TITLE - CHILD 1
+  const cartTitle = document.createElement("h2");
+  cartTitle.textContent = "Cart";
+  cartContainer.appendChild(cartTitle); //ADD TO CONTAINER
+
+  // HR - CHILD 2
+  const horizontalLine = document.createElement('hr');
+  cartContainer.appendChild(horizontalLine); //ADD TO CONTAINER
+  
+  // DIV - CHILD 3
+
+  // CHECKOUT BTN - 
+
+  // didalam container masukin h2, hr dan div. yang isinya jumlah item
+}
+
+  // preview the total item that i adding to cart
+  const addCartBtn = document.getElementById("add-cart-btn");
+  const NumberItemCart = document.querySelector(".item-cart");
+
+  addCartBtn.addEventListener("click", ()=>{
+    // ini buat ngedit angka si count.total item notif.
+    if(count.textContent === 0){
+      return false
+    }else{
+      NumberItemCart.textContent = count;
+    }   
 
 
 })
+
