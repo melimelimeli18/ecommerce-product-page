@@ -193,11 +193,12 @@ const shoes = 'images/image-product-1.jpg';
 shoesImage.append(shoes);
 
 const previewCartBtn = document.getElementById('preview-cart-btn');
-
+previewCartBtn.addEventListener("click",
+previewCart)
 // ini tuh buat display doang. MAKE THE CART APPEAR (display BLOCK) OR ANYTHING WHEN CLICKED ON DISPLAYCART BUTTON.
+
 function previewCart(){
   const cartContainer = getElementById("cart-container");
-  console.log(cartContainer);
   // H2 CART TITLE - CHILD 1
   const cartTitle = document.createElement("h2");
   cartTitle.textContent = "Cart";
@@ -208,10 +209,21 @@ function previewCart(){
   cartContainer.appendChild(horizontalLine); //ADD TO CONTAINER
   
   // DIV - CHILD 3
-
+  const productOnCart = document.createElement("div");
+    //Image Preview Product On CArt
+    const productPreviewIMG = document.createElement("img");
+    productPreviewIMG.src="images/image-product-1-thumbnail.jpg";
+    productOnCart.appendChild(productPreviewIMG);
   // CHECKOUT BTN - 
+  const checkoutButton = document.createElement("div");
+  checkoutButton.classList.add("checkout-btn")
+  const checkoutText = document.createElement("p");
+  checkoutText.textContent = "Checkout";
+  checkoutButton.appendChild(checkoutText);
+  cartContainer.appendChild(checkoutButton); //ADD TO CONTAINER
 
   // didalam container masukin h2, hr dan div. yang isinya jumlah item
+  
 }
 
   // preview the total item that i adding to cart

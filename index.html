@@ -35,8 +35,8 @@
     .gallery-item img:hover{opacity:60%;border:2px solid rgba(255, 125, 26, 1);}
     .normal-price {color:hsl(220, 14%, 75%)}
     .header a, .description{color:hsl(219, 9%, 45%);}
-    #preview-cart-btn path:hover{fill:hsl(220, 13%, 13%);}
-    .profile a img:hover{outline:2px solid hsl(26, 100%, 55%);   box-sizing: border-box; border-radius: 100%;
+    .preview-cart-icon:hover{filter: brightness(0);}
+    .profile a img:hover{outline:2px solid hsl(26, 100%, 55%);box-sizing: border-box; border-radius: 100%;
 }
   </style>
 </head>
@@ -69,11 +69,10 @@
       </div>
     </div>
     <div class="flex-grow"></div>
-    <div id="preview-cart-btn" class="cart mr-5 py-2">
-      <!-- <a href="#"><img src="images/icon-cart.svg" alt="" srcset=""></a> -->
-      <a href=""><svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="hsl(219, 9%, 45%)" fill-rule="nonzero"/></svg></a>
+    <button id="preview-cart-btn" class="cart mr-5 py-2">
+      <img class="preview-cart-icon" src="images/icon-cart.svg" alt="" srcset="">
       <span class="item-cart absolute bg-orange-500 flex ml-3 top-5 items-start text-[0.6rem] px-2 rounded-full z-10 text-white md:top-10"></span>
-    </div>
+    </button>
     
     <div class="profile">
       <a href="#"><img src="images/image-avatar.png" alt="" class="h-[30px] w-[30px]"></a>
