@@ -41,39 +41,38 @@ const fallLimitedSneaker =
 ];
 
 fallLimitedSneaker.forEach(item => {
-    // for web
-    const imageShow = document.getElementById("image-show");
-    const radioBtnElement = document.getElementById(`${item.type}`);
-    radioBtnElement.addEventListener("click",function(){
-        imageShow.style.backgroundImage = `url('${item.src}')`;
-    })
-    //for mobile
-    let currentIndex = 0;
-    
-    function showImage(index) {
-      const { src } = fallLimitedSneaker[index];
-      imageShow.style.backgroundImage = `url(${src})`;
-    }
-    const nextBtn = document.getElementById("next-btn");
-    nextBtn.addEventListener("click",function nextImage() {
-        if (currentIndex === fallLimitedSneaker.length - 1) {
-          currentIndex = 0;
-        } else {
-          currentIndex++;
-        }
-        showImage(currentIndex);
-      }  
-      )
-    const previousBtn = document.getElementById("previous-btn");
-    previousBtn.addEventListener("click", function previousImage() {
-        if (currentIndex === 0) {
-          currentIndex = fallLimitedSneaker.length - 1;
-        } else {
-          currentIndex--;
-        }
-        showImage(currentIndex);
+  // for web
+  const imageShow = document.getElementById("image-show");
+  const radioBtnElement = document.getElementById(`${item.type}`);
+  radioBtnElement.addEventListener("click",function(){
+    imageShow.style.backgroundImage = `url('${item.src}')`;
+  })
+  //for mobile
+  let currentIndex = 0;
+  function showImage(index) {
+    const { src } = fallLimitedSneaker[index];
+    imageShow.style.backgroundImage = `url(${src})`;
+  }
+  const nextBtn = document.getElementById("next-btn");
+  nextBtn.addEventListener("click",function nextImage() {
+      if (currentIndex === fallLimitedSneaker.length - 1){
+        currentIndex = 0;
+      } else {
+        currentIndex++;
       }
-    )
+      showImage(currentIndex);
+    }  
+  )
+  const previousBtn = document.getElementById("previous-btn");
+  previousBtn.addEventListener("click", function previousImage() {
+      if (currentIndex === 0) {
+        currentIndex = fallLimitedSneaker.length - 1;
+      } else {
+        currentIndex--;
+      }
+      showImage(currentIndex);
+    }
+  )
 })
 
   // to edit how much item i want to add the cart
@@ -98,18 +97,19 @@ fallLimitedSneaker.forEach(item => {
   })
 
 
-  })
+
 
   // the price before get discount and adding the currency
-  // const normalPriceCurrency = 250;
-  // const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
-  // const normalPriceElement = document.querySelector(".normal-price");
-  // normalPriceElement.textContent = normalPrice;
+  const normalPriceCurrency = 250;
+  const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
+  const normalPriceElement = document.getElementById("normal-price");
+  normalPriceElement.textContent = normalPrice;
   
-  const normalPrice = 250;
-  const normalPriceCurrency = normalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
-  const normalPriceElement = document.querySelector(".normal-price");
-  normalPriceElement.textContent = normalPriceCurrency;
+  // const normalPrice = 250;
+  // const normalPriceCurrency = normalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
+  // const normalPriceElement = document.querySelector(".normal-price");
+  // normalPriceElement.textContent = normalPriceCurrency;
+  // // normalPriceElement.textContent = "Nice";
 
 const discountElement = document.querySelector(".discount p");
 const discount = document.createElement("div");
@@ -193,51 +193,43 @@ const shoes = 'images/image-product-1.jpg';
 shoesImage.append(shoes);
 
 const previewCartBtn = document.getElementById('preview-cart-btn');
-previewCartBtn.addEventListener("click",
-previewCart)
-// ini tuh buat display doang. MAKE THE CART APPEAR (display BLOCK) OR ANYTHING WHEN CLICKED ON DISPLAYCART BUTTON.
+// const cartContainer = document.getElementById("cart-container");
+const cartContainer = document.querySelector(".cart-container");
 
-function previewCart(){
-  const cartContainer = getElementById("cart-container");
-  // H2 CART TITLE - CHILD 1
-  const cartTitle = document.createElement("h2");
-  cartTitle.textContent = "Cart";
-  cartContainer.appendChild(cartTitle); //ADD TO CONTAINER
-
-  // HR - CHILD 2
-  const horizontalLine = document.createElement('hr');
-  cartContainer.appendChild(horizontalLine); //ADD TO CONTAINER
-  
-  // DIV - CHILD 3
-  const productOnCart = document.createElement("div");
-    //Image Preview Product On CArt
-    const productPreviewIMG = document.createElement("img");
-    productPreviewIMG.src="images/image-product-1-thumbnail.jpg";
-    productOnCart.appendChild(productPreviewIMG);
-  // CHECKOUT BTN - 
-  const checkoutButton = document.createElement("div");
-  checkoutButton.classList.add("checkout-btn")
-  const checkoutText = document.createElement("p");
-  checkoutText.textContent = "Checkout";
-  checkoutButton.appendChild(checkoutText);
-  cartContainer.appendChild(checkoutButton); //ADD TO CONTAINER
-
-  // didalam container masukin h2, hr dan div. yang isinya jumlah item
-  
+function openCart(){
+  const show = ["hidden","block"];
+  for (let i = 0; i < show.length; i++) {
+    cartContainer.classList.toggle(show[i]);       
+  }
+  // cartContainer.classList.toggle("hidden");
 }
+// previewCartBtn.addEventListener("change",openCart())
+previewCartBtn.addEventListener("change",function(){
+  if (this.checkedx){
+    openCart();
+  } else {
+    openCart();
+  }
+})
+
+//   cartContainer.classList.toggle("hidden");
+// })
 
   // preview the total item that i adding to cart
   const addCartBtn = document.getElementById("add-cart-btn");
   const NumberItemCart = document.querySelector(".item-cart");
-
-  addCartBtn.addEventListener("click", ()=>{
+  addCartBtn.addEventListener("click", function(){
     // ini buat ngedit angka si count.total item notif.
     if(count.textContent === 0){
       return false
     }else{
       NumberItemCart.textContent = count;
     }   
+  })
 
+  // function previewCart(){
+  // const productOnCartContainer = document.getElementById("product-added-cart");
+  // const p = document.createElement("p");;
+  // p.textContent = "nyahaloo"}  
 
 })
-

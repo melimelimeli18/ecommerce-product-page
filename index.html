@@ -69,18 +69,23 @@
       </div>
     </div>
     <div class="flex-grow"></div>
-    <button id="preview-cart-btn" class="cart mr-5 py-2">
+    <label id="preview-cart-container" for="preview-cart-btn" class="cart mr-5 py-2">
+      <input type="checkbox" name="" id="preview-cart-btn" class="hidden">
       <img class="preview-cart-icon" src="images/icon-cart.svg" alt="" srcset="">
       <span class="item-cart absolute bg-orange-500 flex ml-3 top-5 items-start text-[0.6rem] px-2 rounded-full z-10 text-white md:top-10"></span>
-    </button>
+    </label>
     
     <div class="profile">
       <a href="#"><img src="images/image-avatar.png" alt="" class="h-[30px] w-[30px]"></a>
     </div>
   </div>
 
-<div id="cart-container" class="flex bg-white absolute m-2 p-5 rounded-lg w-[90%] justify-start z-50 drop-shadow-xl md:absolute md:w-[40%] md:right-[20px] md:m-[-0.5rem] md:mr-5">
-  pppp
+<div id="" class="cart-container flex flex-col bg-white absolute m-2 p-5 rounded-lg w-[90%] h-[fit-content] justify-start z-50 drop-shadow-2xl hidden md:absolute md:w-[40%] md:right-[20px] md:m-[-0.5rem] md:mr-5">
+  <h2 class="font-bold">Cart</h2>
+  <hr class="h-[2px] mt-5 m-[-1.25rem]">
+  <p class="invisible py-2">test</p>
+  <div id="product-added-cart"></div>
+  <button id="checkout-btn" class="bg-orange-500 mt-5 py-4 rounded-lg"><p class="text-white font-bold">Checkout</p></button>
 </div>
 
 <hr class="hidden md:block md:mx-14 md:border-b-1 sm:border-gray-300 md:z-0"> 
@@ -143,8 +148,8 @@
       </div>
       <div class="flex-grow md:hidden"></div>
       <!-- the normal price -->
-      <div>
-        <p class="normal-price line-through"></p>
+      <div class="">
+        <p id="normal-price" class=" line-through text-base"></p>
       </div>
     </div>
     
