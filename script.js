@@ -79,13 +79,13 @@ fallLimitedSneaker.forEach(item => {
   const totalItem = document.querySelector(".total-item");
   let count = 0;
   totalItem.textContent = count;
-
+  // add amount
   const plusBtn = document.getElementById("plus-btn")
   plusBtn.addEventListener("click",()=>{
     count++;
     totalItem.textContent = count;
   })
-
+  // subtrack amount
   const minusBtn = document.getElementById("minus-btn");
   minusBtn.addEventListener("click", ()=>{
     if(totalItem.textContent < 1){
@@ -96,140 +96,193 @@ fallLimitedSneaker.forEach(item => {
     }
   })
 
-
-
-
   // the price before get discount and adding the currency
   const normalPriceCurrency = 250;
   const normalPrice = normalPriceCurrency.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
   const normalPriceElement = document.getElementById("normal-price");
   normalPriceElement.textContent = normalPrice;
-  
-  // const normalPrice = 250;
-  // const normalPriceCurrency = normalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); //$250.00
-  // const normalPriceElement = document.querySelector(".normal-price");
-  // normalPriceElement.textContent = normalPriceCurrency;
-  // // normalPriceElement.textContent = "Nice";
 
-const discountElement = document.querySelector(".discount p");
-const discount = document.createElement("div");
+  //discount product
+  const discountElement = document.querySelector(".discount p");
+  const discount = document.createElement("div");
   const discountSymbol = document.createElement("span");
-    discountSymbol.textContent = "%";
-  const discountProduct = document.createElement("span");
   const discountPrice = 50;
-    discountProduct.textContent = discountPrice;
   
-  discount.appendChild(discountProduct);
+  discountSymbol.textContent = "%";
+  discount.appendChild(document.createTextNode(discountPrice));
   discount.appendChild(discountSymbol);
   discountElement.appendChild(discount);
-
-  // function discount
-  function afterDiscount(normalPrice,discountPrice){
-    const discountAmount = (discountPrice / 100) * normalPrice;
-    const discountedPrice = normalPrice - discountAmount;
+  
+  // function discount 
+  function afterDiscount(normalPriceCurrency,discountPrice){
+    const discountAmount = (discountPrice / 100) * normalPriceCurrency;
+    const discountedPrice = normalPriceCurrency - discountAmount;
     return discountedPrice;
   }
   
   // after discount
   const productPriceElement = document.getElementById("product-price");
-  const productPrice = afterDiscount(normalPrice,discountPrice);//150
+    //please targetin the variable that has integer datatype
+  const productPrice = afterDiscount(normalPriceCurrency,discountPrice);//150
   const productPriceCurrency = productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   productPriceElement.append(productPriceCurrency);
-
-
 
   const titleProductElement = document.getElementById("product-title");
   const titleProduct = "Fall Limited Edition Sneakers";
   titleProductElement.textContent = titleProduct;
 
+  //cart container display when be clicked
+  const previewCartBtn = document.getElementById('preview-cart-btn');
+  const cartContainer = document.querySelector(".cart-container");
+  function openCart(){
+    const show = ["hidden","block","transition-all","duration-300", "ease-out"];
+    for (let i = 0; i < show.length; i++) {
+      cartContainer.classList.toggle(show[i]);       
+    }
+  }
+  previewCartBtn.addEventListener("change",function(){
+    if (this.checked){
+      openCart();
+    } else {
+      openCart();
+    }
+  })
 
-// kalo add cart button di pencet maka item di cart span bakal keganti sesuai dengan jumlah yang ditambahkan
-
-// dan kalo preview cart dipencet, maka akan ngejumlahin angkanya, apakah harus nya udh ada dari awal??? trus pas dipencet itu ngedisplay doang??? SOalnya kan JS, kalo machinenya beneran gerak berarti butuh Backend dong??
-
-/* Komponen Element di DisplayCart
-- Ada Tulisan Bold (Cart),
-- Ada garis horizontal (hr) yang lebar nya 100% dari container
-- Ada image produk yang udah ditambahin.
-- Nama produknya
-- harga per pcs, di kali total Item, Harga setelah ditotal Item (bold), ama icon sampah (buat remove item yang ditambahin)
-- Tombol checkout
-
-Tombol display cart punya shadow yang ada di kiri, kanan, bawahnya.
-
-kira-kira html dari cartnya itu sendii
-div id=cart-container class=cart p-5
-  h2 class=font-bold cart
-  hr class= p-0
+/* 
   div class=flex flex-row
     img src jpg
     div class=flex flex-col
       p Fall Limited Edition
       div class flex-row
-        p 125
+        p 125 (after get discounted)
         p x
         p 3
-        p class=font-bold 375
-    img src icon
-  div checkout button
+        p class=font-bold (after been multiplied)
+    img src icon (removeBtn)
+    div checkout button 
+  </div>
 */
 
-//liat ref ini di JS todolist
-// const editButton = document.createElement('button');
-// editButton.classList.add('editButton');
-// const editIcon = document.createElement('img');
-// editIcon.src = '../icon-svg/icon_edit.svg';
-
-
-// bold
-
-const removeIcon = document.createElement('img');
-removeIcon.src = 'images/icon-delete.svg';
-const removeBtn = document.createElement("button");
-removeBtn.append(removeIcon);
-
-const shoesImage = document.createElement('img');
-const shoes = 'images/image-product-1.jpg';
-shoesImage.append(shoes);
-
-const previewCartBtn = document.getElementById('preview-cart-btn');
-// const cartContainer = document.getElementById("cart-container");
-const cartContainer = document.querySelector(".cart-container");
-
-function openCart(){
-  const show = ["hidden","block"];
-  for (let i = 0; i < show.length; i++) {
-    cartContainer.classList.toggle(show[i]);       
-  }
-  // cartContainer.classList.toggle("hidden");
-}
-// previewCartBtn.addEventListener("change",openCart())
-previewCartBtn.addEventListener("change",function(){
-  if (this.checkedx){
-    openCart();
-  } else {
-    openCart();
-  }
-})
-
-//   cartContainer.classList.toggle("hidden");
-// })
-
   // preview the total item that i adding to cart
+  if (cartContainer.children.length < 1) {
+    cartContainer.style.height = 'auto';
+    } else {
+      cartContainer.style.height = '45%';
+    }
+
   const addCartBtn = document.getElementById("add-cart-btn");
   const NumberItemCart = document.querySelector(".item-cart");
+  const cartContentContainer = document.getElementById("product-added-cart");
+
+  const emptyNotify = document.querySelector(".empty-notify");
+  //If there's empty, it will filled by empty notify
+  if (cartContentContainer.childElementCount === 0) {
+      // emptyNotify.innerHTML = `<p class="empty-notify my-auto items-center text-center font-bold">Your cart is empty</p>`;
+      emptyNotify.style.display = "block";
+    }
+
+  
   addCartBtn.addEventListener("click", function(){
+    // emptyNotify.textContent = "";   
+    emptyNotify.style.display = "none";   
+     
     // ini buat ngedit angka si count.total item notif.
-    if(count.textContent === 0){
+    if(count < 1){
       return false
     }else{
       NumberItemCart.textContent = count;
-    }   
-  })
+    }
+      //product
+      const shoesImage = document.createElement('img');
+      shoesImage.classList.add("shoes-image")
+      const shoes = 'images/image-product-1.jpg';
+      shoesImage.src = shoes;
+      cartContentContainer.appendChild(shoesImage);
 
-  // function previewCart(){
-  // const productOnCartContainer = document.getElementById("product-added-cart");
-  // const p = document.createElement("p");;
-  // p.textContent = "nyahaloo"}  
+      //text section
+      const textSectionCart = document.createElement("div");
+      textSectionCart.classList.add("text-section-cart");
+      cartContentContainer.appendChild(textSectionCart);
+      
+        //title append
+        const titleProductCartElement = document.createElement("p");
+        titleProductCartElement.textContent = titleProduct;
+        textSectionCart.appendChild(titleProductCartElement);
+
+        //priceAmountSection
+        const priceAmountSection = document.createElement("div");
+        priceAmountSection.classList.add("price-amount-section");
+        textSectionCart.appendChild(priceAmountSection);
+
+          //price
+          const productPriceOnCartElement = document.createElement("p");
+          productPriceOnCartElement.classList.add("product-price-on-cart");
+          productPriceOnCartElement.textContent = productPriceCurrency;
+          priceAmountSection.appendChild(productPriceOnCartElement);
+
+          //multiply simbol
+          const multipleSymbolElement = document.createElement("span");
+          multipleSymbolElement.classList.add("multiple-symbol");
+          multipleSymbolElement.textContent = "x"; 
+          priceAmountSection.appendChild(multipleSymbolElement);
+
+          //amount
+          const amountProductElement = document.createElement("p");
+          amountProductElement.classList.add("amount-product");
+          amountProductElement.textContent = count;
+          priceAmountSection.appendChild(amountProductElement);
+
+          //result of calculation 
+          function CalculatingTotalPrice(productPrice,count){
+            const total = productPrice * count;
+            return '$' + total.toFixed(2);
+          }
+
+          const totalPriceElement = document.createElement("p");
+          totalPriceElement.classList.add("total-price");
+          const totalPrice = CalculatingTotalPrice(productPrice,count);
+          totalPriceElement.append(totalPrice);
+          priceAmountSection.appendChild(totalPriceElement);
+      
+      //delete button    
+      const removeBtn = document.createElement("button");
+      const removeIcon = document.createElement('img');
+      removeIcon.src = 'images/icon-delete.svg';
+      removeBtn.append(removeIcon);
+      cartContentContainer.appendChild(removeBtn);      
+          
+      removeBtn.addEventListener("click", function() {
+        // Remove the cart item container from the DOM
+        cartContentContainer.remove();
+        //remove the icon of the count cart too
+        NumberItemCart.textContent = "";
+      });
+  }, 
+  // {once : true}
+  )
+
+  //if there in cartproduct has a content, add the checkout button. if not not add it.
+  // make a new div
+
+  /*
+  
+  I'm making a cart feature. ketika aku berhasil nambahin suatu container dengan menekan (add to cart) button. dan didalam container itu terdapat delete button. Aku membuat button itu untuk menghapus container ketika tidak lagi dibuhtukan
+  
+  removeBtn.addEventListener("click", function() {
+    cartContentContainer.remove();
+    NumberItemCart.textContent = "";
+  });
+
+  dan perintah itu akan membuat saat kita memencet, container akan hilang dan icon angka yg ada di cart akan menghilang juga. 
+
+  Aku mau membuat ketika aku sudah menghapus itu, dan saat aku memencet kembali add cart button, itu akan menambah container lagi
+  
+  */ 
+
+
+
+
+
+
 
 })
