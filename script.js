@@ -259,6 +259,7 @@ fallLimitedSneaker.forEach(item => {
       });
   }, 
   // {once : true}
+  
   )
 
   //if there in cartproduct has a content, add the checkout button. if not not add it.
