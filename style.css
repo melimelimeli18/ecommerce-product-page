@@ -1,0 +1,38 @@
+*{padding:0px; margin:0px; box-sizing: border-box;user-select: none;}
+    h1{user-select: text;}
+    body{font-family: 'Hanken Grotesk', sans-serif;font-family: 'Kumbh Sans', sans-serif;}
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    #add-cart-btn{background:hsl(26, 100%, 55%);}
+    .sneaker-company,.discount p{color:hsl(26, 100%, 55%);}
+    .discount{background-color: hsl(25, 100%, 94%);}
+    .body {
+       color:hsl(220, 14%, 75%); /*grayish blue */
+      color:hsl(219, 9%, 45%); /*dark grayish blue*/
+      color:hsl(220, 13%, 13%); /*very dark blue*/
+      color:hsl(223, 64%, 98%); /*light grayish blue*/
+    }
+    .gallery-item img:hover{opacity:60%;border:2px solid rgba(255, 125, 26, 1);}
+    .normal-price {color:hsl(220, 14%, 75%)}
+    .header a, .description{color:hsl(219, 9%, 45%);}
+    .preview-cart-icon:hover{filter: brightness(0);}
+    .profile a img:hover{outline:2px solid hsl(26, 100%, 55%);box-sizing: border-box; border-radius: 100%;}
+    .empty-notify{color:hsl(219, 9%, 45%);}
+
+
+
+    #preview-cart-btn:checked {transition: all 300ms ease-out;}
+    .shoes-image{width: 3rem; height: 3rem; border-radius: 0.2rem; margin-right:2.5rem;}
+    .cart-content{
+      /* flex flex-row mt-10 justify-between */
+      display:flex;
+      flex-direction:row;
+      /* margin-top:2.5rem; */
+      justify-content: justify-between;
+      margin:2.5rem auto;
+    }
+    .text-section-cart{display:flex; flex-direction: column;margin-right:2.5rem;}
+    .price-amount-section{display:flex; flex-direction: row;}
+    .product-price-on-cart,.multiple-symbol,.amount-product{padding-right: 1rem;}
+    .total-price{font-weight: 700;}

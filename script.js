@@ -172,19 +172,27 @@ fallLimitedSneaker.forEach(item => {
 
   const addCartBtn = document.getElementById("add-cart-btn");
   const NumberItemCart = document.querySelector(".item-cart");
-  const cartContentContainer = document.getElementById("product-added-cart");
+  const cartContainerElement = document.getElementById("product-added-cart");
+
+  // const cartContent = document.createElement("div");
+  // cartContent.classList.add("cart-content");
+  // cartContainerElement.appendChild(cartContent);
 
   const emptyNotify = document.querySelector(".empty-notify");
   //If there's empty, it will filled by empty notify
-  if (cartContentContainer.childElementCount === 0) {
-      // emptyNotify.innerHTML = `<p class="empty-notify my-auto items-center text-center font-bold">Your cart is empty</p>`;
+  if (cartContainerElement.childElementCount === 0) {
       emptyNotify.style.display = "block";
     }
 
-  
+    
   addCartBtn.addEventListener("click", function(){
-    // emptyNotify.textContent = "";   
-    emptyNotify.style.display = "none";   
+      let cartContent = document.querySelector(".cart-content");
+
+    if(!cartContent){
+      let cartContent = document.createElement("div");
+      cartContent.classList.add("cart-content");
+       
+      emptyNotify.style.display = "none";   
      
     // ini buat ngedit angka si count.total item notif.
     if(count < 1){
@@ -197,12 +205,12 @@ fallLimitedSneaker.forEach(item => {
       shoesImage.classList.add("shoes-image")
       const shoes = 'images/image-product-1.jpg';
       shoesImage.src = shoes;
-      cartContentContainer.appendChild(shoesImage);
+      cartContent.appendChild(shoesImage);
 
       //text section
       const textSectionCart = document.createElement("div");
       textSectionCart.classList.add("text-section-cart");
-      cartContentContainer.appendChild(textSectionCart);
+      cartContent.appendChild(textSectionCart);
       
         //title append
         const titleProductCartElement = document.createElement("p");
@@ -249,35 +257,29 @@ fallLimitedSneaker.forEach(item => {
       const removeIcon = document.createElement('img');
       removeIcon.src = 'images/icon-delete.svg';
       removeBtn.append(removeIcon);
-      cartContentContainer.appendChild(removeBtn);      
+      cartContent.appendChild(removeBtn);      
           
       removeBtn.addEventListener("click", function() {
         // Remove the cart item container from the DOM
-        cartContentContainer.remove();
+        cartContainerElement.removeChild(cartContent);
         //remove the icon of the count cart too
         NumberItemCart.textContent = "";
-      });
-  }, 
-  // {once : true}
-  
-  )
-
-  //if there in cartproduct has a content, add the checkout button. if not not add it.
-  // make a new div
+      })
+      cartContainerElement.appendChild(cartContent);
+    }
+  }) 
+ 
 
   /*
-  
-  I'm making a cart feature. ketika aku berhasil nambahin suatu container dengan menekan (add to cart) button. dan didalam container itu terdapat delete button. Aku membuat button itu untuk menghapus container ketika tidak lagi dibuhtukan
-  
-  removeBtn.addEventListener("click", function() {
-    cartContentContainer.remove();
-    NumberItemCart.textContent = "";
-  });
-
-  dan perintah itu akan membuat saat kita memencet, container akan hilang dan icon angka yg ada di cart akan menghilang juga. 
-
   Aku mau membuat ketika aku sudah menghapus itu, dan saat aku memencet kembali add cart button, itu akan menambah container lagi
+
+  1. misahin append na
+
+
+I WANT WHEN IT ALREADY HAS CONTENT IN CONTAINER, IT WILL CANT ADD NEW CONTAINER, BUT WHEN ITS NO ONE CONTENT IT CONTAINER IT WILL ADD NEW CONTAINER
+  Cart Kosong > Add Cart > Cart Terisi > Delete Button > Cart Kosong > Add Cart > Cart terisi
   
+
   */ 
 
 
