@@ -170,6 +170,7 @@ fallLimitedSneaker.forEach(item => {
       cartContainer.style.height = '45%';
     }
 
+  const checkoutBtn = document.getElementById("checkout-btn");
   const addCartBtn = document.getElementById("add-cart-btn");
   const NumberItemCart = document.querySelector(".item-cart");
   const cartContainerElement = document.getElementById("product-added-cart");
@@ -179,106 +180,96 @@ fallLimitedSneaker.forEach(item => {
   // cartContainerElement.appendChild(cartContent);
 
   const emptyNotify = document.querySelector(".empty-notify");
-  //If there's empty, it will filled by empty notify
-  if (cartContainerElement.childElementCount === 0) {
-      emptyNotify.style.display = "block";
-    }
-
     
   addCartBtn.addEventListener("click", function(){
       let cartContent = document.querySelector(".cart-content");
-
+      if(count < 1){
+            return false
+          }else{
+            NumberItemCart.textContent = count;
+          }
     if(!cartContent){
+      checkoutBtn.style.display = "block";
       let cartContent = document.createElement("div");
       cartContent.classList.add("cart-content");
        
       emptyNotify.style.display = "none";   
-     
-    // ini buat ngedit angka si count.total item notif.
-    if(count < 1){
-      return false
-    }else{
-      NumberItemCart.textContent = count;
-    }
-      //product
-      const shoesImage = document.createElement('img');
-      shoesImage.classList.add("shoes-image")
-      const shoes = 'images/image-product-1.jpg';
-      shoesImage.src = shoes;
-      cartContent.appendChild(shoesImage);
-
-      //text section
-      const textSectionCart = document.createElement("div");
-      textSectionCart.classList.add("text-section-cart");
-      cartContent.appendChild(textSectionCart);
       
-        //title append
-        const titleProductCartElement = document.createElement("p");
-        titleProductCartElement.textContent = titleProduct;
-        textSectionCart.appendChild(titleProductCartElement);
-
-        //priceAmountSection
-        const priceAmountSection = document.createElement("div");
-        priceAmountSection.classList.add("price-amount-section");
-        textSectionCart.appendChild(priceAmountSection);
-
-          //price
-          const productPriceOnCartElement = document.createElement("p");
-          productPriceOnCartElement.classList.add("product-price-on-cart");
-          productPriceOnCartElement.textContent = productPriceCurrency;
-          priceAmountSection.appendChild(productPriceOnCartElement);
-
-          //multiply simbol
-          const multipleSymbolElement = document.createElement("span");
-          multipleSymbolElement.classList.add("multiple-symbol");
-          multipleSymbolElement.textContent = "x"; 
-          priceAmountSection.appendChild(multipleSymbolElement);
-
-          //amount
-          const amountProductElement = document.createElement("p");
-          amountProductElement.classList.add("amount-product");
-          amountProductElement.textContent = count;
-          priceAmountSection.appendChild(amountProductElement);
-
-          //result of calculation 
-          function CalculatingTotalPrice(productPrice,count){
-            const total = productPrice * count;
-            return '$' + total.toFixed(2);
-          }
-
-          const totalPriceElement = document.createElement("p");
-          totalPriceElement.classList.add("total-price");
-          const totalPrice = CalculatingTotalPrice(productPrice,count);
-          totalPriceElement.append(totalPrice);
-          priceAmountSection.appendChild(totalPriceElement);
+      // notif count
       
-      //delete button    
-      const removeBtn = document.createElement("button");
-      const removeIcon = document.createElement('img');
-      removeIcon.src = 'images/icon-delete.svg';
-      removeBtn.append(removeIcon);
-      cartContent.appendChild(removeBtn);      
-          
-      removeBtn.addEventListener("click", function() {
-        // Remove the cart item container from the DOM
-        cartContainerElement.removeChild(cartContent);
-        //remove the icon of the count cart too
-        NumberItemCart.textContent = "";
-      })
-      cartContainerElement.appendChild(cartContent);
+        //product
+        const shoesImage = document.createElement('img');
+        shoesImage.classList.add("shoes-image")
+        const shoes = 'images/image-product-1.jpg';
+        shoesImage.src = shoes;
+        cartContent.appendChild(shoesImage);
+
+        //text section
+        const textSectionCart = document.createElement("div");
+        textSectionCart.classList.add("text-section-cart");
+        cartContent.appendChild(textSectionCart);
+        
+          //title append
+          const titleProductCartElement = document.createElement("p");
+          titleProductCartElement.textContent = titleProduct;
+          textSectionCart.appendChild(titleProductCartElement);
+
+          //priceAmountSection
+          const priceAmountSection = document.createElement("div");
+          priceAmountSection.classList.add("price-amount-section");
+          textSectionCart.appendChild(priceAmountSection);
+
+            //price
+            const productPriceOnCartElement = document.createElement("p");
+            productPriceOnCartElement.classList.add("product-price-on-cart");
+            productPriceOnCartElement.textContent = productPriceCurrency;
+            priceAmountSection.appendChild(productPriceOnCartElement);
+
+            //multiply simbol
+            const multipleSymbolElement = document.createElement("span");
+            multipleSymbolElement.classList.add("multiple-symbol");
+            multipleSymbolElement.textContent = "x"; 
+            priceAmountSection.appendChild(multipleSymbolElement);
+
+            //amount
+            const amountProductElement = document.createElement("p");
+            amountProductElement.classList.add("amount-product");
+            amountProductElement.textContent = count;
+            priceAmountSection.appendChild(amountProductElement);
+
+            //result of calculation 
+            function CalculatingTotalPrice(productPrice,count){
+              const total = productPrice * count;
+              return '$' + total.toFixed(2);
+            }
+
+            const totalPriceElement = document.createElement("p");
+            totalPriceElement.classList.add("total-price");
+            const totalPrice = CalculatingTotalPrice(productPrice,count);
+            totalPriceElement.append(totalPrice);
+            priceAmountSection.appendChild(totalPriceElement);
+        
+        //delete button    
+        const removeBtn = document.createElement("button");
+        const removeIcon = document.createElement('img');
+        removeIcon.src = 'images/icon-delete.svg';
+        removeBtn.append(removeIcon);
+        cartContent.appendChild(removeBtn);      
+            
+        removeBtn.addEventListener("click", function() {
+          // Remove the cart item container from the DOM
+          cartContainerElement.removeChild(cartContent);
+          //remove the icon of the count cart too
+          NumberItemCart.textContent = "";
+          emptyNotify.style.display = "block";
+          checkoutBtn.style.display = "none";
+        })
+        cartContainerElement.appendChild(cartContent);
     }
   }) 
  
 
   /*
-  Aku mau membuat ketika aku sudah menghapus itu, dan saat aku memencet kembali add cart button, itu akan menambah container lagi
-
-  1. misahin append na
-
-
-I WANT WHEN IT ALREADY HAS CONTENT IN CONTAINER, IT WILL CANT ADD NEW CONTAINER, BUT WHEN ITS NO ONE CONTENT IT CONTAINER IT WILL ADD NEW CONTAINER
-  Cart Kosong > Add Cart > Cart Terisi > Delete Button > Cart Kosong > Add Cart > Cart terisi
-  
 
   */ 
 

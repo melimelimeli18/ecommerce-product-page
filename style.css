@@ -30,7 +30,8 @@
       flex-direction:row;
       /* margin-top:2.5rem; */
       justify-content: justify-between;
-      margin:2.5rem auto;
+      margin-top:2.5rem;
+      /* margin:2rem auto; */
     }
     .text-section-cart{display:flex; flex-direction: column;margin-right:2.5rem;}
     .price-amount-section{display:flex; flex-direction: row;}
