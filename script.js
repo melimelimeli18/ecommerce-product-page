@@ -14,7 +14,16 @@
 
  #add-cart-btn | to add the item that we already set to the cart, and will be displayed, if we clicked on (DONE)
  
- #preview-cart-btn*/
+ #preview-cart-btn | DONE
+
+ LIST FEATURE  THAT NEED TO DO 
+ - Lightbox 
+ - Menu Navbar
+ - Active States
+ - Design Checkout Page (?)
+ - Make some animation, Like opening cart, etc
+ - Make Loading animation when opening 
+ */
 
 document.addEventListener("DOMContentLoaded", function (event) {
 const fallLimitedSneaker = 
@@ -147,21 +156,6 @@ fallLimitedSneaker.forEach(item => {
       openCart();
     }
   })
-
-/* 
-  div class=flex flex-row
-    img src jpg
-    div class=flex flex-col
-      p Fall Limited Edition
-      div class flex-row
-        p 125 (after get discounted)
-        p x
-        p 3
-        p class=font-bold (after been multiplied)
-    img src icon (removeBtn)
-    div checkout button 
-  </div>
-*/
 
   // preview the total item that i adding to cart
   if (cartContainer.children.length < 1) {
