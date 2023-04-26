@@ -18,34 +18,51 @@
 - radio button menggunakan state (checked/unchecked)
   -->
 
-<section class="gallery">
+  <div class="modal flex flex-col">
+    <span id="close-icon" class="justify-end">
+      <img src="images/icon-close.svg" alt="">
+    </span>
 
-    <div class="gallery__item">
-      <input type="radio" id="img-1" checked name="gallery" class="gallery__selector"/>
-
-      <img class="gallery__img" src="https://picsum.photos/id/1015/600/400.jpg" alt=""/>
-
-      <label for="img-1" class="gallery__thumb">
-        <img src="https://picsum.photos/id/1015/150/100.jpg" alt=""/>
-      </label>
+    <div class="image-preview">
+      <div class="bg-cover h-[43vh] bg-top flex flex-row justify-center items-center md:rounded-lg md:min-h-[80%]" style="background-image: url('images/image-product-1.jpg');" id="image-show">
+        <div id="previous-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
+          <img class="" src="images/icon-previous.svg" alt="">
+        </div>
+        <div class="flex-grow"></div>
+        <div id="next-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
+          <img class="" src="images/icon-next.svg" alt="">
+        </div>
+      </div>
     </div>
 
+    <div class="thumbnail-preview flex flex-row">
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-1">
+        <label for="img-1">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-1-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-2">
+        <label for="img-2">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-2-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-3">
+        <label for="img-3">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-3-thumbnail.jpg" alt="">
+        </label>
+      </div>
+      <div class="gallery-item hidden md:block">
+        <input class="invisible" type="radio" name="gallery" id="img-4">
+        <label for="img-4">
+          <img class="rounded-lg h-[5rem]" src="images/image-product-4-thumbnail.jpg" alt="">
+        </label>
+      </div>
+    </div>
+  </div>
 
-    <div class="gallery__item">
-      <input type="radio" id="img-2" name="gallery" class="gallery__selector"/>
-      <img class="gallery__img" src="https://picsum.photos/id/1039/600/400.jpg" alt=""/>
-      <label for="img-2" class="gallery__thumb"><img src="https://picsum.photos/id/1039/150/100.jpg" alt=""/></label>
-    </div>
-    <div class="gallery__item">
-      <input type="radio" id="img-3" name="gallery" class="gallery__selector"/>
-      <img class="gallery__img" src="https://picsum.photos/id/1057/600/400.jpg" alt=""/>
-      <label for="img-3" class="gallery__thumb"><img src="https://picsum.photos/id/1057/150/100.jpg" alt=""/></label>
-    </div>
-    <div class="gallery__item">
-      <input type="radio" id="img-4" name="gallery" class="gallery__selector"/>
-      <img class="gallery__img" src="https://picsum.photos/id/106/600/400.jpg" alt=""/>
-      <label for="img-4" class="gallery__thumb"><img src="https://picsum.photos/id/106/150/100.jpg" alt=""/></label>
-    </div>
-  </section>
+
 </body>
 </html>

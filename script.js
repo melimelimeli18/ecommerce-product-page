@@ -17,7 +17,7 @@
  #preview-cart-btn | DONE
 
  LIST FEATURE  THAT NEED TO DO 
- - Lightbox 
+ - Lightbox (WIP)
  - Menu Navbar
  - Active States
  - Design Checkout Page (?)
@@ -48,6 +48,55 @@ const fallLimitedSneaker =
     "src" : "images/image-product-4.jpg"
     }
 ];
+
+  const imageShow = document.getElementById("image-show");
+  const lightbox = document.createElement('div');
+  lightbox.id = 'lightbox'; //fix the sytle please, make the background color tp style the modal
+  document.body.appendChild(lightbox);
+  const nextBtn = document.getElementById("next-btn");
+  const previousBtn = document.getElementById("previous-btn");
+
+
+  imageShow.addEventListener("click",function (){
+    lightbox.classList.add('active');
+    const lightboxContainer = document.createElement("div");
+    const productContainer = document.getElementById("product");
+    productContainer.classList.remove("md:w-[30%]");
+    const productCloneContainer = productContainer.cloneNode(true);
+    productCloneContainer.classList.add("product-clone-container");
+    
+    nextBtn.classList.remove("md:hidden");
+    previousBtn.classList.remove("md:hidden");
+
+    
+    // while (lightbox.firstChild) {
+    //   lightbox.removeChild(lightbox.firstChild);
+    // }
+
+    const closeBtn = document.createElement('div');
+    closeBtn.setAttribute('id', 'close-btn');
+    const img = document.createElement('img');
+    img.setAttribute('src', 'images/icon-close.svg');
+    closeBtn.appendChild(img);
+    closeBtn.addEventListener('click', function() {
+      lightboxContainer.remove();
+      lightbox.classList.remove('active');
+      // lightbox.removeChild(lightbox.firstChild);
+    });
+
+    lightboxContainer.appendChild(nextBtn)
+lightboxContainer.appendChild(previousBtn);
+
+    lightboxContainer.appendChild(closeBtn);
+    lightboxContainer.appendChild(productCloneContainer);
+    lightbox.appendChild(lightboxContainer);
+    console.log(lightbox);
+  })
+
+
+function productImage (){
+  
+}
 
 fallLimitedSneaker.forEach(item => {
   // for web
@@ -82,7 +131,66 @@ fallLimitedSneaker.forEach(item => {
       showImage(currentIndex);
     }
   )
-})
+
+  // const lightbox = document.createElement('div');
+  // lightbox.id = 'lightbox';
+  // document.body.appendChild(lightbox);
+
+  
+  // imageShow.addEventListener("click",function(){
+  //   lightbox.classList.add('active');
+  //   const img = document.createElement('img');;
+  //   img.src = item.src;
+  //   while (lightbox.firstChild) {
+  //     lightbox.removeChild(lightbox.firstChild);
+  //   }
+  //   lightbox.appendChild(img);
+  //   lightbox.appendChild(previousBtn);
+  //   lightbox.appendChild(nextBtn);
+
+  
+
+
+
+
+
+  
+
+  // LIGHT BOX 
+
+ 
+
+}) // AKHIR PARAMETER FOR EACH
+
+// what if I make a lightbox on this for each??
+
+
+
+// const lightbox = document.createElement('div');
+// lightbox.id = 'lightbox';
+// document.body.appendChild(lightbox);
+
+// const images = document.querySelectorAll('.gallery-item img');
+// images.forEach(image => {
+//   imageShow.addEventListener('click', e => {
+//     lightbox.classList.add('active');
+//     const img = document.createElement('img');;
+//     img.src = image.src;
+//     while (lightbox.firstChild) {
+//       lightbox.removeChild(lightbox.firstChild);
+//     }
+//     lightbox.appendChild(img);
+//     lightbox.appendChild(previousBtn);
+//     lightbox.appendChild(nextBtn);
+//   })
+// })
+
+// lightbox.addEventListener('click', e => {
+//   if (e.target !== e.currentTarget) return
+//   lightbox.classList.remove('active')
+// })
+
+
 
   // to edit how much item i want to add the cart
   const totalItem = document.querySelector(".total-item");

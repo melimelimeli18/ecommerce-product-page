@@ -110,7 +110,9 @@
 
 
 <div class="content flex flex-col md:flex-row md:px-[7rem] md:py-12 md:grow">
-  <div class="product md:flex-col md:w-[30%] md:">
+  <div id="lightbox"></div>
+  <div id="modal" class="hidden bg-black absolute inset-0 opacity-60"></div>
+  <div id="product" class="md:flex-col md:w-[30%] md:">
     <!-- the big image -->
     <div class="bg-cover h-[43vh] bg-top flex flex-row justify-center items-center md:rounded-lg md:min-h-[80%]" style="background-image: url('images/image-product-1.jpg');" id="image-show">
       
@@ -122,7 +124,7 @@
         <img class="" src="images/icon-next.svg" alt="">
       </div>
     </div>
-
+  
     <div class="thumbnail flex flex-row justify-between">
       <div class="gallery-item hidden md:block">
         <input class="invisible" type="radio" name="gallery" id="img-1">
@@ -148,8 +150,18 @@
           <img class="rounded-lg h-[5rem]" src="images/image-product-4-thumbnail.jpg" alt="">
         </label>
       </div>
-    </div>
   </div>
+<!-- 
+    <div id="lightbox" class="hidden">
+      <div id="lightbox-content">
+        <img id="lightbox-image" src="">
+        <div id="close-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer">
+          <img class="" src="images/icon-close.svg" alt="">
+        </div>
+      </div>
+    </div> -->
+  </div>
+
   <div class="grow-0 px-8"></div>
 
   <div class="product-info px-5 pt-5 md:w-[50%] md:pl-16 md:grow md:mr-5">
@@ -185,7 +197,7 @@
       </div>
       <div class="md:grow-0 md:px-5"></div>
       <div id="add-cart-btn" class="mt-5 flex flex-row justify-center py-5 rounded-lg shadow-xl shadow-orange-200 mb-5 cursor-pointer md:grow">
-        <img class="text-white filter brightness-0 invert" src="images/icon-cart.svg" alt="">
+        <img class="text-white" src="images/icon-cart2.svg" alt="">
         <p class="pl-5 text-white" >Add to cart</p>
       </div>
     </div>
@@ -212,5 +224,6 @@
 
 -💻 When designing your HTML document, it's important to consider the needs of all users, including those with disabilities. By using proper landmarks and ARIA attributes, you can make your site more accessible and user-friendly for everyone.
    -->
+   
 </body>
 </html>
