@@ -49,6 +49,39 @@ const fallLimitedSneaker =
     }
 ];
 
+
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const { src } = fallLimitedSneaker[index];
+    imageShow.style.backgroundImage = `url(${src})`;
+  }
+
+  function nextImage(){
+    const nextBtn = document.getElementById("next-btn");
+    nextBtn.addEventListener("click",function nextImage() {
+      if (currentIndex === fallLimitedSneaker.length - 1){
+        currentIndex = 0;
+      } else {
+        currentIndex++;
+      }
+      showImage(currentIndex);
+    })
+  }
+  
+  function previousImage(){
+    const previousBtn = document.getElementById("previous-btn");
+    previousBtn.addEventListener("click", function previousImage() {
+      if (currentIndex === 0) {
+        currentIndex = fallLimitedSneaker.length - 1;
+      } else {
+        currentIndex--;
+      }
+      showImage(currentIndex);
+    })
+  }
+
   const imageShow = document.getElementById("image-show");
   const lightbox = document.createElement('div');
   lightbox.id = 'lightbox'; //fix the sytle please, make the background color tp style the modal
@@ -57,47 +90,66 @@ const fallLimitedSneaker =
   const previousBtn = document.getElementById("previous-btn");
 
 
-  imageShow.addEventListener("click",function (){
-    lightbox.classList.add('active');
-    const lightboxContainer = document.createElement("div");
-    const productContainer = document.getElementById("product");
-    productContainer.classList.remove("md:w-[30%]");
-    const productCloneContainer = productContainer.cloneNode(true);
-    productCloneContainer.classList.add("product-clone-container");
-    
-    nextBtn.classList.remove("md:hidden");
-    previousBtn.classList.remove("md:hidden");
+// make the handleImageClick be work just for web, not mobile
+//combine the handleImageClick with previousImage(), nextImage(), function until work, etc
 
-    
-    // while (lightbox.firstChild) {
-    //   lightbox.removeChild(lightbox.firstChild);
-    // }
+function handleImageClick() {
+      lightbox.classList.add('active');
+      const lightboxContainer = document.createElement("div");
+      const productContainer = document.getElementById("product");
+      productContainer.classList.remove("md:w-[30%]");
+      const productCloneContainer = productContainer.cloneNode(true);
+      productCloneContainer.classList.add("product-clone-container");
+      
+      nextBtn.classList.remove("md:hidden");
+      previousBtn.classList.remove("md:hidden");
 
-    const closeBtn = document.createElement('div');
-    closeBtn.setAttribute('id', 'close-btn');
-    const img = document.createElement('img');
-    img.setAttribute('src', 'images/icon-close.svg');
-    closeBtn.appendChild(img);
-    closeBtn.addEventListener('click', function() {
-      lightboxContainer.remove();
-      lightbox.classList.remove('active');
-      // lightbox.removeChild(lightbox.firstChild);
-    });
+      
+      // while (lightbox.firstChild) {
+      //   lightbox.removeChild(lightbox.firstChild);
+      // }
 
-    lightboxContainer.appendChild(nextBtn)
-lightboxContainer.appendChild(previousBtn);
+      const closeBtn = document.createElement('div');
+      closeBtn.setAttribute('id', 'close-btn');
+      const img = document.createElement('img');
+      img.setAttribute('src', 'images/icon-close.svg');
+      closeBtn.appendChild(img);
+      closeBtn.addEventListener('click', function() {
+        lightboxContainer.remove();
+        lightbox.classList.remove('active');
+        // lightbox.removeChild(lightbox.firstChild);
+      });
 
-    lightboxContainer.appendChild(closeBtn);
-    lightboxContainer.appendChild(productCloneContainer);
-    lightbox.appendChild(lightboxContainer);
-    console.log(lightbox);
-  })
+      lightboxContainer.appendChild(nextBtn)
+      lightboxContainer.appendChild(previousBtn);
 
-
-function productImage (){
-  
+      lightboxContainer.appendChild(closeBtn);
+      lightboxContainer.appendChild(productCloneContainer);
+      lightbox.appendChild(lightboxContainer);
+      console.log(lightbox);
 }
 
+function addOrRemoveEventListener() {
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    imageShow.addEventListener("click", handleImageClick);
+  } else {
+    imageShow.removeEventListener("click", handleImageClick);
+  }
+}
+
+window.addEventListener("load", addOrRemoveEventListener);
+window.addEventListener("resize", addOrRemoveEventListener);
+
+  // if (window.matchMedia("(min-width: 768px)").matches) {
+    // imageShow.addEventListener("click", handleImageClick);
+    // imageShow.addEventListener("click", handleImageClick)
+  // } 
+  // else {
+  //   imageShow.removeEventListener("click", handleImageClick);
+    // nextBtn.classList.add("md:hidden");
+    // previousBtn.classList.add("md:hidden");
+  // }
+    
 fallLimitedSneaker.forEach(item => {
   // for web
   const imageShow = document.getElementById("image-show");
@@ -106,31 +158,11 @@ fallLimitedSneaker.forEach(item => {
     imageShow.style.backgroundImage = `url('${item.src}')`;
   })
   //for mobile
-  let currentIndex = 0;
-  function showImage(index) {
-    const { src } = fallLimitedSneaker[index];
-    imageShow.style.backgroundImage = `url(${src})`;
-  }
-  const nextBtn = document.getElementById("next-btn");
-  nextBtn.addEventListener("click",function nextImage() {
-      if (currentIndex === fallLimitedSneaker.length - 1){
-        currentIndex = 0;
-      } else {
-        currentIndex++;
-      }
-      showImage(currentIndex);
-    }  
-  )
-  const previousBtn = document.getElementById("previous-btn");
-  previousBtn.addEventListener("click", function previousImage() {
-      if (currentIndex === 0) {
-        currentIndex = fallLimitedSneaker.length - 1;
-      } else {
-        currentIndex--;
-      }
-      showImage(currentIndex);
-    }
-  )
+
+  showImage(currentIndex);
+  nextBtn.addEventListener("click", nextImage);
+  previousBtn.addEventListener("click", previousImage);
+  
 
   // const lightbox = document.createElement('div');
   // lightbox.id = 'lightbox';
@@ -147,23 +179,9 @@ fallLimitedSneaker.forEach(item => {
   //   lightbox.appendChild(img);
   //   lightbox.appendChild(previousBtn);
   //   lightbox.appendChild(nextBtn);
-
-  
-
-
-
-
-
-  
-
   // LIGHT BOX 
 
- 
-
 }) // AKHIR PARAMETER FOR EACH
-
-// what if I make a lightbox on this for each??
-
 
 
 // const lightbox = document.createElement('div');
