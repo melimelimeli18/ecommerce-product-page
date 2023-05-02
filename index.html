@@ -114,8 +114,9 @@
   <div id="modal" class="hidden bg-black absolute inset-0 opacity-60"></div>
   <div id="product" class="md:flex-col md:w-[30%] md:">
     <!-- the big image -->
-    <div class="bg-cover h-[43vh] bg-top flex flex-row justify-center items-center md:rounded-lg md:min-h-[80%]" style="background-image: url('images/image-product-1.jpg');" id="image-show">
-      
+    <div class="bg-cover h-[43vh] bg-top flex flex-row justify-center items-center md:rounded-lg md:min-h-[80%]" style="background-image: url('images/image-product-1.jpg');" 
+    id="image-show"
+    >
       <div id="previous-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
         <img class="" src="images/icon-previous.svg" alt="">
       </div>
@@ -150,17 +151,27 @@
           <img class="rounded-lg h-[5rem]" src="images/image-product-4-thumbnail.jpg" alt="">
         </label>
       </div>
-  </div>
-<!-- 
-    <div id="lightbox" class="hidden">
-      <div id="lightbox-content">
-        <img id="lightbox-image" src="">
-        <div id="close-btn" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer">
-          <img class="" src="images/icon-close.svg" alt="">
+    </div>
+  </div>  
+
+  <div class="lightbox hidden flex-col absolute">
+      <div class="close-btn">
+        <img src="images/icon-close.svg" alt="">
+      </div>
+      <div>
+        <div id="previous-btn-lb" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
+            <img class="" src="images/icon-previous.svg" alt="">
+        </div>
+        <div class="flex-grow"></div>
+        <div id="next-btn-lb" class="flex bg-white items-center bg-white px-4 py-3 rounded-full mx-5 cursor-pointer md:hidden">
+            <img class="" src="images/icon-next.svg" alt="">
         </div>
       </div>
-    </div> -->
-  </div>
+      <div class="lightbox-image">
+          <img src="images/image-product-1.jpg" alt="" />
+      </div>
+      <div class="items flex justify-between"></div>
+  </div> 
 
   <div class="grow-0 px-8"></div>
 

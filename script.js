@@ -4,17 +4,11 @@
 /* #menu-btn | to show navbar
  #preview-cart-btn | the cart icon/button on the navbar, to preview the item and price that we add to the card. When we clicked, there's a basket filled appear
 
- #previous-btn | on mobile screen - we use that to slide an image, (DONE)
-
- #next-btn | on mobile screen - we use that to slide an image,(DONE)
-
- #minus-btn | to set how many item we want to add to cart (DONE)
- 
- #plus-btn | to set how many item we want to add to cart (DONE)
-
- #add-cart-btn | to add the item that we already set to the cart, and will be displayed, if we clicked on (DONE)
- 
- #preview-cart-btn | DONE
+  TO DO LIST : 
+  - Perbaikin thumbnail dari original HTML nya 
+      ukuran, 
+      hover jadi putih (coba liat keknya ada di w3school)
+  - ngerubah warna close-btn di lb jadi warna oren
 
  LIST FEATURE  THAT NEED TO DO 
  - Lightbox (WIP)
@@ -22,7 +16,7 @@
  - Active States
  - Design Checkout Page (?)
  - Make some animation, Like opening cart, etc
- - Make Loading animation when opening 
+ - Make Loading animation when opening (zoom effect when hovering big image).
  */
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -49,108 +43,220 @@ const fallLimitedSneaker =
     }
 ];
 
+let currentIndex = 0;
 
-
-  let currentIndex = 0;
-
-  function showImage(index) {
-    const { src } = fallLimitedSneaker[index];
+  function showImage(src) {
+    // const { src } = fallLimitedSneaker[index];
     imageShow.style.backgroundImage = `url(${src})`;
+    // imageShowLb.style.backgroundImage = `url(${src})`;
+    
   }
 
   function nextImage(){
     const nextBtn = document.getElementById("next-btn");
-    nextBtn.addEventListener("click",function nextImage() {
+    nextBtn.addEventListener("click",function (){
       if (currentIndex === fallLimitedSneaker.length - 1){
         currentIndex = 0;
       } else {
         currentIndex++;
       }
       showImage(currentIndex);
+      showImage(fallLimitedSneaker[currentIndex].src);
     })
   }
   
   function previousImage(){
     const previousBtn = document.getElementById("previous-btn");
-    previousBtn.addEventListener("click", function previousImage() {
+    previousBtn.addEventListener("click", function(){
       if (currentIndex === 0) {
         currentIndex = fallLimitedSneaker.length - 1;
       } else {
         currentIndex--;
       }
-      showImage(currentIndex);
+      // showImage(currentIndex);
+      showImage(fallLimitedSneaker[currentIndex].src);
     })
   }
 
+
+
   const imageShow = document.getElementById("image-show");
-  const lightbox = document.createElement('div');
-  lightbox.id = 'lightbox'; //fix the sytle please, make the background color tp style the modal
-  document.body.appendChild(lightbox);
+  // const lightbox = document.createElement('div');
+  // lightbox.id = 'lightbox';
+  // document.body.appendChild(lightbox);
   const nextBtn = document.getElementById("next-btn");
   const previousBtn = document.getElementById("previous-btn");
 
+  const gallery = document.querySelector(".thumbnail");
+  // const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
+  // const galleryItemsLB = [];
+  // galleryItems.forEach(item => {
+  //   galleryItemsLB.push(item.cloneNode(true));
+  // });
+  // const galleryItemImg = document.getElementById("image-show"); 
+  // const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item img"); 
+  const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item label"); 
+  const galleryItemsImgLB = [];
+  galleryItemImg.forEach(item => {
+    galleryItemsImgLB.push(item.cloneNode(true));
+  });
+  
+  const lightbox = document.querySelector(".lightbox");
+  const lightboxImg = document.querySelector(".lightbox-image img");
 
-// make the handleImageClick be work just for web, not mobile
-//combine the handleImageClick with previousImage(), nextImage(), function until work, etc
 
-function handleImageClick() {
-      lightbox.classList.add('active');
-      const lightboxContainer = document.createElement("div");
-      const productContainer = document.getElementById("product");
-      productContainer.classList.remove("md:w-[30%]");
-      const productCloneContainer = productContainer.cloneNode(true);
-      productCloneContainer.classList.add("product-clone-container");
-      
-      nextBtn.classList.remove("md:hidden");
-      previousBtn.classList.remove("md:hidden");
-
-      
-      // while (lightbox.firstChild) {
-      //   lightbox.removeChild(lightbox.firstChild);
-      // }
-
-      const closeBtn = document.createElement('div');
-      closeBtn.setAttribute('id', 'close-btn');
-      const img = document.createElement('img');
-      img.setAttribute('src', 'images/icon-close.svg');
-      closeBtn.appendChild(img);
-      closeBtn.addEventListener('click', function() {
-        lightboxContainer.remove();
-        lightbox.classList.remove('active');
-        // lightbox.removeChild(lightbox.firstChild);
-      });
-
-      lightboxContainer.appendChild(nextBtn)
-      lightboxContainer.appendChild(previousBtn);
-
-      lightboxContainer.appendChild(closeBtn);
-      lightboxContainer.appendChild(productCloneContainer);
-      lightbox.appendChild(lightboxContainer);
-      console.log(lightbox);
+ function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
+  const galleryItemImage = galleryItem.querySelector("img");
+  galleryItemImage.addEventListener("click", (e) => {
+    const clickedImage = galleryItemImage.getAttribute("src");
+    lightbox.style.display = "flex";
+    lightboxImg.src = clickedImage;
+    lightbox.querySelector(".items").append(...galleryItems);
+  });
 }
 
-function addOrRemoveEventListener() {
-  if (window.matchMedia("(min-width: 768px)").matches) {
-    imageShow.addEventListener("click", handleImageClick);
-  } else {
-    imageShow.removeEventListener("click", handleImageClick);
-  }
-}
+const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
+const galleryItemsLB = [];
+galleryItems.forEach(item => {
+  const clonedItem = item.cloneNode(true);
+  galleryItemsLB.push(clonedItem);
+  createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
+  createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
+});
 
-window.addEventListener("load", addOrRemoveEventListener);
-window.addEventListener("resize", addOrRemoveEventListener);
+  
+  
 
-  // if (window.matchMedia("(min-width: 768px)").matches) {
-    // imageShow.addEventListener("click", handleImageClick);
-    // imageShow.addEventListener("click", handleImageClick)
-  // } 
-  // else {
-  //   imageShow.removeEventListener("click", handleImageClick);
-    // nextBtn.classList.add("md:hidden");
-    // previousBtn.classList.add("md:hidden");
+  // for (let currentImage of galleryItemImg) {
+  // currentImage.addEventListener("click", (e) => {
+  // for (let i = 0; i < galleryItems.length; i++) {
+  //   const currentImage = galleryItemImg[i];
+  //   const clonedImage = galleryItems[i].cloneNode(true);
+  //   clonedImage.addEventListener("click", (e) => {
+  //     const clickedImage = e.target.getAttribute("src");
+  //     lightbox.style.display = "flex";
+  //     lightboxImg.src = clickedImage;
+  //   });
+  //   lightbox.querySelector(".items").appendChild(clonedImage);
+  // }})
+  
+  // for (let currentImage of galleryItemImg) {
+  //   currentImage.addEventListener("click", (e) => {
+  //     const clickedImage = galleryItemsImgLB.target.getAttribute("src");
+  //     lightbox.style.display = "flex";
+  //     lightboxImg.src = clickedImage;
+  //     lightbox.querySelector(".items").append(...galleryItemsLB);
+  //   });
   // }
+
+  const closeBtn = document.querySelector(".close-btn");
+closeBtn.addEventListener('click', function() {
+  lightbox.style.display = "none";
+});
+
+
+  // const closeBtn = document.querySelector(".close-btn");
+  // closeBtn.addEventListener('click', function() {
+  //   lightbox.remove();
+  //   lightbox.style.display="none";
+  // });
+
+
+  // window.addEventListener("click", (e) => {
+  //   if (
+  //     e.target.getAttribute("class") === "lightbox" ||
+  //     e.target.getAttribute("class") === "close-btn"
+  //   ) {
+  //     gallery.append(...galleryItems);
+  //     lightbox.style.display = "none";
+  //   }
+  // })
+
+  /* Suggestion :
+  - Coca clone nya samain kayak yang dibawah cuma diganti ID nya aja.....
+  imageShow, radioBtnElement, 
+  
+  showImage(fallLimitedSneaker[currentIndex].src);
+  nextBtn.addEventListener("click", nextImage);
+  previousBtn.addEventListener("click", previousImage);
+    - 
+  */
+
+  // const imageShowLb = productCloneContainer.querySelector("#image-show");
+  // const imageShowLb = imageShow.cloneNode(true);
+  
+  
+  // function handleImageClick() {
+  //   lightbox.classList.add('active');
     
+  //   const lightboxContainer = document.createElement("div");
+  //   const productContainer = document.getElementById("product");
+  //   productContainer.classList.remove("md:w-[30%]");
+    
+  //     const productCloneContainer = productContainer.cloneNode(true);
+  //     productCloneContainer.classList.add("product-clone-container");
+      
+  //     const buttonContainerLb = document.createElement("div");  
+  //     buttonContainerLb.classList.add("button-container-lb");
+  //     const flexgrow = document.createElement("div");
+  //     flexgrow.classList.add("flex-grow");
+
+  //     const previousBtnLB = productCloneContainer.querySelector("#previous-btn");
+  //     const nextBtnLB = productCloneContainer.querySelector("#next-btn"); 
+
+  //     previousBtnLB.classList.remove("md:hidden");
+  //     nextBtnLB.classList.remove("md:hidden");
+      
+  //     buttonContainerLb.appendChild(previousBtnLB);    
+  //     buttonContainerLb.appendChild(flexgrow);    
+  //     buttonContainerLb.appendChild(nextBtnLB);    
+
+  //     const closeBtn = document.createElement('div');
+  //     closeBtn.setAttribute('id', 'close-btn');
+  //     const img = document.createElement('img');
+  //     img.setAttribute('src', 'images/icon-close.svg');
+  //     img.classList.add("close-icon");
+  //     closeBtn.appendChild(img);
+  //     closeBtn.addEventListener('click', function() {
+  //       lightboxContainer.remove();
+  //       lightbox.classList.remove('active');
+  //       // lightbox.removeChild(lightbox.firstChild);
+  //     });
+
+  //     // productCloneContainer.replaceChild(imageShow, imageShowLb);
+  //     lightboxContainer.appendChild(buttonContainerLb)
+  //     lightboxContainer.appendChild(closeBtn);
+  //     lightboxContainer.appendChild(productCloneContainer);
+  //     lightbox.appendChild(lightboxContainer);
+      
+  //     // imageShowLb.addEventListener("change",showImage);
+  //     showImage(currentIndex);
+  //     nextBtnLB.addEventListener("click", nextImage);
+  //     previousBtnLB.addEventListener("click", previousImage);
+  // }
+
+
+  
+  // function addOrRemoveEventListener() {
+  //   if (window.matchMedia("(min-width: 768px)").matches) {
+  //     imageShow.addEventListener("click", handleImageClick);
+  //   } else {
+  //     imageShow.removeEventListener("click", handleImageClick);
+  //   }
+  // }
+
+  // window.addEventListener("load", addOrRemoveEventListener);
+  // window.addEventListener("resize", addOrRemoveEventListener);
+      
+
+
+
+
+
+
 fallLimitedSneaker.forEach(item => {
+  // let currentIndex = 0;
+
   // for web
   const imageShow = document.getElementById("image-show");
   const radioBtnElement = document.getElementById(`${item.type}`);
@@ -159,11 +265,9 @@ fallLimitedSneaker.forEach(item => {
   })
   //for mobile
 
-  showImage(currentIndex);
+  showImage(fallLimitedSneaker[currentIndex].src);
   nextBtn.addEventListener("click", nextImage);
   previousBtn.addEventListener("click", previousImage);
-  
-
   // const lightbox = document.createElement('div');
   // lightbox.id = 'lightbox';
   // document.body.appendChild(lightbox);
