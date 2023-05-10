@@ -5,10 +5,7 @@
  #preview-cart-btn | the cart icon/button on the navbar, to preview the item and price that we add to the card. When we clicked, there's a basket filled appear
 
   TO DO LIST : 
-  - Perbaikin thumbnail dari original HTML nya 
-      ukuran, 
-      hover jadi putih (coba liat keknya ada di w3school)
-  - ngerubah warna close-btn di lb jadi warna oren
+  - coba bikin functionnya bisa dipake buat image show semua nya termasuk yang ada di lightbox
 
  LIST FEATURE  THAT NEED TO DO 
  - Lightbox (WIP)
@@ -45,28 +42,42 @@ const fallLimitedSneaker =
 
 let currentIndex = 0;
 
-  function showImage(src) {
-    // const { src } = fallLimitedSneaker[index];
+  // function showImage(event,src) {
+  //   // const { src } = fallLimitedSneaker[index];
+  //   const image = event.target;
+  //   image.style.backgroundImage = `url(${src})`;
+  //   imageShow.style.backgroundImage = `url(${src})`;
+  //   // imageShowLb.style.backgroundImage = `url(${src})`;
+
+  //   //const lightboxImg = document.querySelector(".lightbox-image img");
+  // }
+
+  function showImage(src, button) {
+    const imageLb = document.getElementById(button);
+    imageLb.style.backgroundImage = `url(${src})`;
     imageShow.style.backgroundImage = `url(${src})`;
-    // imageShowLb.style.backgroundImage = `url(${src})`;
-    
+
   }
 
-  function nextImage(){
-    const nextBtn = document.getElementById("next-btn");
+  function nextImage(event){
+    // const nextBtn = document.getElementById("next-btn");
+     const button = event.target.id;
+    const nextBtn = document.getElementById(button);
     nextBtn.addEventListener("click",function (){
       if (currentIndex === fallLimitedSneaker.length - 1){
         currentIndex = 0;
       } else {
         currentIndex++;
       }
-      showImage(currentIndex);
-      showImage(fallLimitedSneaker[currentIndex].src);
+      // showImage(currentIndex);
+      showImage(fallLimitedSneaker[currentIndex].src, button);
     })
   }
   
-  function previousImage(){
-    const previousBtn = document.getElementById("previous-btn");
+  function previousImage(event){
+    // const previousBtn = document.getElementById("previous-btn");
+    const button = event.target.id;
+    const previousBtn = document.getElementById(button);
     previousBtn.addEventListener("click", function(){
       if (currentIndex === 0) {
         currentIndex = fallLimitedSneaker.length - 1;
@@ -74,13 +85,13 @@ let currentIndex = 0;
         currentIndex--;
       }
       // showImage(currentIndex);
-      showImage(fallLimitedSneaker[currentIndex].src);
+      showImage(fallLimitedSneaker[currentIndex].src, button);
     })
   }
 
 
 
-  const imageShow = document.getElementById("image-show");
+  // const imageShow = document.getElementById("image-show"); pinjem bntr
   // const lightbox = document.createElement('div');
   // lightbox.id = 'lightbox';
   // document.body.appendChild(lightbox);
@@ -95,6 +106,7 @@ let currentIndex = 0;
   // });
   // const galleryItemImg = document.getElementById("image-show"); 
   // const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item img"); 
+
   const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item label"); 
   const galleryItemsImgLB = [];
   galleryItemImg.forEach(item => {
@@ -103,28 +115,45 @@ let currentIndex = 0;
   
   const lightbox = document.querySelector(".lightbox");
   const lightboxImg = document.querySelector(".lightbox-image img");
+  const imageShow = document.getElementById("image-show");
 
 
- function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
-  const galleryItemImage = galleryItem.querySelector("img");
-  galleryItemImage.addEventListener("click", (e) => {
-    const clickedImage = galleryItemImage.getAttribute("src");
-    lightbox.style.display = "flex";
-    lightboxImg.src = clickedImage;
-    lightbox.querySelector(".items").append(...galleryItems);
-  });
-}
+  // const radioBtn = Object.keys(fallLimitedSneaker).map(key => fallLimitedSneaker[key].type);
+  // const radioBtns = this.querySelectorAll(".radioBtn");
+  // const imageSrc = Object.keys(fallLimitedSneaker).map(key => fallLimitedSneaker[key].src);
 
-const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
-const galleryItemsLB = [];
-galleryItems.forEach(item => {
-  const clonedItem = item.cloneNode(true);
-  galleryItemsLB.push(clonedItem);
-  createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
-  createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
-});
+  function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
+    // const galleryItemImage = galleryItem.querySelector(".bg-cover");
+    // const galleryItemImage = galleryItem.querySelector("img");
+    const galleryItemThumbnail = document.getElementById("image-show");
+    const galleryItemImage = galleryItem.querySelector("img");
 
+    galleryItemThumbnail.addEventListener("click", (e) => {
+      const clickedImage = galleryItemImage.getAttribute("src");
+      lightbox.style.display = "flex";
+      lightboxImg.src = clickedImage;
+      lightbox.querySelector(".items").append(...galleryItems);
+
+      const nextBtnLB = lightbox.querySelector("#next-btn-lb");
+      const previousBtnLB = lightbox.querySelector("#previous-btn-lb");  
+      nextBtnLB.addEventListener("click", nextImage);
+      previousBtnLB.addEventListener("click", previousImage);
+
+      showImage(event,src);
+      // showImage(event,clickedImage);
+  })
+  }
+
+  const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
+  const galleryItemsLB = [];
+  galleryItems.forEach(item => {
+    const clonedItem = item.cloneNode(true);
+    galleryItemsLB.push(clonedItem);
+    createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
+    createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
+  })
   
+  //showImage(fallLimitedSneaker[currentIndex].src);
   
 
   // for (let currentImage of galleryItemImg) {
@@ -150,9 +179,9 @@ galleryItems.forEach(item => {
   // }
 
   const closeBtn = document.querySelector(".close-btn");
-closeBtn.addEventListener('click', function() {
-  lightbox.style.display = "none";
-});
+  closeBtn.addEventListener('click', function() {
+    lightbox.style.display = "none";
+  });
 
 
   // const closeBtn = document.querySelector(".close-btn");
@@ -265,7 +294,10 @@ fallLimitedSneaker.forEach(item => {
   })
   //for mobile
 
-  showImage(fallLimitedSneaker[currentIndex].src);
+  showImage(event,fallLimitedSneaker[currentIndex].src, imageShow);
+
+  // const nextImageMobile = 
+
   nextBtn.addEventListener("click", nextImage);
   previousBtn.addEventListener("click", previousImage);
   // const lightbox = document.createElement('div');
@@ -333,7 +365,7 @@ fallLimitedSneaker.forEach(item => {
         count--;
     totalItem.textContent = count;
     }
-  })
+  }) 
 
   // the price before get discount and adding the currency
   const normalPriceCurrency = 250;
