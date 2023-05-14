@@ -96,3 +96,58 @@ function filterGalleryItems(clickedTab, tab) {
     }
   }
 }
+
+//////// PUNYA GW YANG BENER DI JS (github) fa83e38
+
+function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
+  const galleryItemImage = galleryItem.querySelector("img");
+  galleryItemImage.addEventListener("click", (e) => {
+    const clickedImage = galleryItemImage.getAttribute("src");
+    lightbox.style.display = "flex";
+    lightboxImg.src = clickedImage;
+    lightbox.querySelector(".items").append(...galleryItems);
+  });
+}
+
+// const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
+const galleryItemsLB = [];
+galleryItems.forEach(item => {
+  const clonedItem = item.cloneNode(true);
+  galleryItemsLB.push(clonedItem);
+  createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
+  createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
+});
+
+////// punya gw sekarang di workspace (masih rusak), thumbnail ngga bisa dipencet, tapi sebelumnya function work on both lightbox and not.
+
+function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
+  const galleryItemThumbnail = productContainer.querySelector(".bg-cover");
+  const galleryItemImage = galleryItem.querySelector("img");
+
+  galleryItemThumbnail.addEventListener("click", (e) => {
+    const clickedImage = galleryItemImage.getAttribute("src");
+    lightbox.style.display = "flex";
+    lightboxImg.src = clickedImage;
+    lightbox.querySelector(".items").append(...galleryItems);
+    showImage(event,"big-image");
+  })
+}
+
+// const galleryItems = document.querySelectorAll(".thumbnail .gallery-item"); 
+// const galleryItemsLB = []; //to Run all the function both lightbox and none
+galleryItems.forEach(item => {
+  const clonedItem = item.cloneNode(true);
+  galleryItemsLB.push(clonedItem);
+  createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
+  createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
+})
+
+// Penyimpanan didalem function createGalleryItemEventListener, didalam galeryThumbnail, Event Lisener
+
+      // const nextBtnLB = lightbox.querySelector("#next-btn-lb");
+      // const previousBtnLB = lightbox.querySelector("#previous-btn-lb");  
+      // nextBtnLB.addEventListener("click", nextImage);
+      // previousBtnLB.addEventListener("click", previousImage);
+
+      // showImage(event,"big-image");
+      // showImage(event,src);   

@@ -5,7 +5,7 @@
  #preview-cart-btn | the cart icon/button on the navbar, to preview the item and price that we add to the card. When we clicked, there's a basket filled appear
 
   TO DO LIST : 
-  - coba bikin functionnya bisa dipake buat image show semua nya termasuk yang ada di lightbox
+  - lightbox, please try to combine method 1 and method 4 on lightbox
 
  LIST FEATURE  THAT NEED TO DO 
  - Lightbox (WIP)
@@ -52,8 +52,8 @@ let currentIndex = 0;
   //   //const lightboxImg = document.querySelector(".lightbox-image img");
   // }
 
-  function showImage(src, button) {
-    const imageLb = document.getElementById(button);
+  function showImage(src, elementID) {
+    const imageLb = document.getElementById(elementID);
     imageLb.style.backgroundImage = `url(${src})`;
     imageShow.style.backgroundImage = `url(${src})`;
 
@@ -97,7 +97,6 @@ let currentIndex = 0;
   // document.body.appendChild(lightbox);
   const nextBtn = document.getElementById("next-btn");
   const previousBtn = document.getElementById("previous-btn");
-
   const gallery = document.querySelector(".thumbnail");
   // const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
   // const galleryItemsLB = [];
@@ -107,7 +106,7 @@ let currentIndex = 0;
   // const galleryItemImg = document.getElementById("image-show"); 
   // const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item img"); 
 
-  const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item label"); 
+  const galleryItemImg = document.querySelectorAll(".thumbnail .gallery-item label"); //(label 1 (img-1), (label 2 (img-2)))
   const galleryItemsImgLB = [];
   galleryItemImg.forEach(item => {
     galleryItemsImgLB.push(item.cloneNode(true));
@@ -117,42 +116,125 @@ let currentIndex = 0;
   const lightboxImg = document.querySelector(".lightbox-image img");
   const imageShow = document.getElementById("image-show");
 
+  const productContainer = document.getElementById("product");
 
   // const radioBtn = Object.keys(fallLimitedSneaker).map(key => fallLimitedSneaker[key].type);
   // const radioBtns = this.querySelectorAll(".radioBtn");
   // const imageSrc = Object.keys(fallLimitedSneaker).map(key => fallLimitedSneaker[key].src);
+// kalo gue pake galleryItemThumbnail, pencet2 an thumbnail di lightbox ngga bakalan jalan
+// sedangkan kalo gue pake galleryItemImage, pencet2 an di thumbnail lightbox function jalan, tapi gue pengennya lightbox muncul saat gue pencet galleryItemThumbnail
 
-  function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
-    // const galleryItemImage = galleryItem.querySelector(".bg-cover");
-    // const galleryItemImage = galleryItem.querySelector("img");
-    const galleryItemThumbnail = document.getElementById("image-show");
-    const galleryItemImage = galleryItem.querySelector("img");
+function createGalleryItemEventListener(galleryItem, lightbox, lightboxImg, galleryItems) {
+  //galleryItem is refer to the first paramater (item/clonedItem) that refers to galleryItems (".thumbnail .gallery-item") 
 
-    galleryItemThumbnail.addEventListener("click", (e) => {
-      const clickedImage = galleryItemImage.getAttribute("src");
-      lightbox.style.display = "flex";
-      lightboxImg.src = clickedImage;
-      lightbox.querySelector(".items").append(...galleryItems);
+  // const galleryItemThumbnail = document.getElementById("image-show");
+  // const galleryItemImage = galleryItem.querySelector("img");
+  
+  const galleryItemThumbnail = productContainer.querySelector(".bg-cover");
+  const galleryItemImage = galleryItem.querySelector("img"); //img.rounded-lg.h-[5rem]
+  const images = document.querySelectorAll('.gallery-item img');//image-product-1,2,3 (8 Kali)
+  //gallery item stands for item/cloned eleement
 
-      const nextBtnLB = lightbox.querySelector("#next-btn-lb");
-      const previousBtnLB = lightbox.querySelector("#previous-btn-lb");  
-      nextBtnLB.addEventListener("click", nextImage);
-      previousBtnLB.addEventListener("click", previousImage);
+  //0.1 bisa dipencet, tapi event listenernya cuma jalan saat mencet mini Image, dan pilih itemnya jalan.
+  // galleryItemThumbnail.addEventListener("click", (e) => {
+  //     images.forEach((galleryItemImg) => {
+  //       galleryItemImage.addEventListener("click", (e) => {
+  //         const clickedImage = e.target.getAttribute("src");
+  //         lightbox.style.display = "flex";
+  //         lightboxImg.src = clickedImage;
+  //         lightbox.querySelector(".items").append(...galleryItems);
+  //       })
+  //     })
+  //   })
 
-      showImage(event,src);
-      // showImage(event,clickedImage);
+
+  //02. sama aja, tapi ngga bisa jalan
+  // galleryItemThumbnail.addEventListener("click", () => {
+  //   images.forEach((image) => {
+  //     image.addEventListener("click", (e) => {
+  //       const clickedImage = e.target.getAttribute("src");
+  //       lightbox.style.display = "flex";
+  //       lightboxImg.src = clickedImage;
+  //       lightbox.querySelector(".items").append(...galleryItems); 
+  //     });
+  //   });
+  // });
+  
+  //03.  ngga bisa juga samsek
+  // for (currentImage of galleryItemImg) {
+  // currentImage.addEventListener("click", (e) =>{
+  //     const clickedImage = e.target.getAttribute("src");
+  //     lightbox.style.display = "flex";
+  //     lightboxImg.src = clickedImage;
+  //     lightbox.querySelector(".items").append(...galleryItems); 
+  //   })
+  // }
+
+  //04. bisa mencet ke thumbnail, tapi mini imagenya ngga jalan
+  // galleryItemThumbnail.addEventListener("click", (e) => {
+  //   const clickedImage = galleryItemImage.getAttribute("src"); //images/image-product-1.jpg (1 sampe 4)
+  //   lightbox.style.display = "flex";
+  //   lightboxImg.src = clickedImage;
+  //   lightbox.querySelector(".items").append(...galleryItems);
+  //   showImage(event,"big-image");
+  // })
+  
+  //05. Blend 1 and 4
+
+  // let clickedImage;
+  // galleryItemImage.addEventListener("click", (e) => {
+  //   clickedImage = e.target.getAttribute("src");
+
+
+  // })
+
+  galleryItemThumbnail.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = clickedImage;
+    lightbox.querySelector(".items").append(...galleryItems);
   })
-  }
 
-  const galleryItems = document.querySelectorAll(".thumbnail .gallery-item");
-  const galleryItemsLB = [];
+  function handleGalleryItemClick(src) {
+    lightbox.style.display = "flex";
+    lightboxImg.src = src;
+    lightbox.querySelector(".items").append(...galleryItems); 
+  }  
+  galleryItemImage.addEventListener("click", (e) => {
+    const clickedImage = e.target.getAttribute("src");
+    handleGalleryItemClick(clickedImage);
+  });
+  galleryItemThumbnail.addEventListener("click", (e) => {
+    const clickedImage = galleryItemImage.getAttribute("src");
+    handleGalleryItemClick(clickedImage);
+  });
+
+
+
+}
+
+
+
+   
+
+
+
+    // galleryItemThumbnail.addEventListener("click", (e) => {
+    //   //event.target
+    //   const clickedImage = galleryItemImage.getAttribute("src");
+    //   lightbox.style.display = "flex";
+    //   lightboxImg.src = clickedImage;
+    //   lightbox.querySelector(".items").append(...galleryItems); //append mini image element
+    // })
+  
+  const galleryItems = document.querySelectorAll(".thumbnail .gallery-item"); 
+  //mini thumbnail
+  const galleryItemsLB = []; //to Run all the function both lightbox and none
   galleryItems.forEach(item => {
     const clonedItem = item.cloneNode(true);
     galleryItemsLB.push(clonedItem);
     createGalleryItemEventListener(item, lightbox, lightboxImg, galleryItemsLB);
     createGalleryItemEventListener(clonedItem, lightbox, lightboxImg, galleryItemsLB);
   })
-  
   //showImage(fallLimitedSneaker[currentIndex].src);
   
 
@@ -182,6 +264,7 @@ let currentIndex = 0;
   closeBtn.addEventListener('click', function() {
     lightbox.style.display = "none";
   });
+
 
 
   // const closeBtn = document.querySelector(".close-btn");
@@ -219,7 +302,7 @@ let currentIndex = 0;
   //   lightbox.classList.add('active');
     
   //   const lightboxContainer = document.createElement("div");
-  //   const productContainer = document.getElementById("product");
+    // const productContainer = document.getElementById("product");
   //   productContainer.classList.remove("md:w-[30%]");
     
   //     const productCloneContainer = productContainer.cloneNode(true);
@@ -524,10 +607,6 @@ fallLimitedSneaker.forEach(item => {
     }
   }) 
  
-
-  /*
-
-  */ 
 
 
 
