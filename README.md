@@ -19,8 +19,8 @@ Users should be able to:
 
 ## Screenshot result
 
-![Desktop preview](blom)
-![Mobile preview](blom)
+![Desktop preview](images\desktop-ss.png)
+![Mobile preview](images\mobile-ss.png)
 
 ### Built with
 
